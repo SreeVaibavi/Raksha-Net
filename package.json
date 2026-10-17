@@ -1,0 +1,13 @@
+{
+  "name": "rakshanet-civilian-safety",
+  "version": "2.1.0",
+  "private": true,
+  "description": "Local civilian reporting prototype with NASA GIBS imagery and live admin report delivery",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

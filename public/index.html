@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141f15">
+  <title>RakshaNet | AI-Assisted Border Safety & Civilian Alert Coordination</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/vendor/maplibre-gl.css">
+  <link rel="stylesheet" href="/styles.css?v=3.0">
+</head>
+<body>
+  <!-- Soldier Uniform Camouflage Background & Grid Overlay -->
+  <div class="camo-bg"></div>
+  <div class="camo-grid-overlay"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Camo Ribbon Header Strip -->
+  <div class="camo-ribbon"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">
+        <svg viewBox="0 0 40 40">
+          <path d="M20 3 34 8v11c0 9-5.7 14.5-14 18C11.7 33.5 6 28 6 19V8z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M13 20h14M20 13v14" stroke="currentColor" stroke-width="2.5"/>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <strong>RAKSHA<span>NET</span></strong>
+        <small>AI-ASSISTED BORDER SAFETY & CIVILIAN DEFENCE</small>
+      </div>
+    </a>
+
+    <div class="top-pills">
+      <div class="port-indicator">
+        <span class="port-dot"></span>
+        <span id="portDisplay">PORT 5050 · SECURE HOST</span>
+      </div>
+      <span class="college-badge">TEAM NEXUS · EASWARI ENG. COLLEGE</span>
+      <span class="tactical-badge gold">100% SOFTWARE</span>
+    </div>
+
+    <div class="top-account">
+      <span id="signedInLabel" class="role-chip hidden"></span>
+      <button id="quickSwapBtn" class="quick-swap-btn hidden">Switch Role</button>
+      <button id="logoutBtn" class="small-btn danger hidden">Sign out</button>
+    </div>
+  </header>
+
+  <!-- Auth Layout -->
+  <div id="authShell" class="auth-layout">
+    <aside class="auth-aside">
+      <div class="eyebrow">MILITARY-GRADE CIVILIAN COORDINATION</div>
+      <h1>Protect lives.<br><em>Verify threats.</em></h1>
+      <p>A secure digital bridge between civilians and authorized responders — not a military surveillance system. Zero troop tracking; privacy-by-design.</p>
+      
+      <div class="demo-login-box hud-box">
+        <div class="eyebrow" style="color:var(--camo-gold)">⚡ INSTANT DEMO EVALUATION</div>
+        <p style="font-size:11px; margin:4px 0 8px; color:var(--text-dim)">Click to sign in instantly without typing passwords or OTPs:</p>
+        <div class="demo-btns-row">
+          <button id="quickAdminBtn" class="camo-action-btn" style="justify-content:center">
+            <span>🎖️</span> Control Room Officer
+          </button>
+          <button id="quickCitizenBtn" class="primary-btn" style="justify-content:center">
+            <span>👤</span> Verified Citizen
+          </button>
+        </div>
+      </div>
+
+      <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap">
+        <span class="tactical-badge">Satellite-Assisted</span>
+        <span class="tactical-badge">Privacy-First</span>
+        <span class="tactical-badge">Verhoeff Aadhaar Check</span>
+        <span class="tactical-badge">NASA GIBS & FIRMS</span>
+      </div>
+    </aside>
+
+    <main class="auth-main">
+      <section class="auth-card camo-border hud-box">
+        <div class="auth-heading">
+          <div>
+            <span class="eyebrow" id="authKicker">AUTHENTICATION PORTAL</span>
+            <h2 id="authTitle" style="color:var(--camo-bone); margin:6px 0">Sign in to RakshaNet</h2>
+            <p id="authDesc" style="color:var(--text-dim)">Select portal mode below to proceed.</p>
+          </div>
+        </div>
+
+        <div class="demo-btns-row" style="margin:16px 0 14px">
+          <button id="citizenPortalBtn" class="secondary-btn" style="justify-content:center; border-color:var(--camo-gold)">Citizen Portal</button>
+          <button id="adminPortalBtn" class="secondary-btn" style="justify-content:center">Admin Control Room</button>
+        </div>
+
+        <div id="loginPanel">
+          <label class="label" for="loginEmail">Email address</label>
+          <input id="loginEmail" type="email" placeholder="you@example.com">
+          <label class="label" for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" placeholder="Enter password">
+          
+          <div id="totpRow" class="hidden">
+            <label class="label" for="loginTotp">Authenticator Code (TOTP)</label>
+            <input id="loginTotp" placeholder="6-digit code or enter 123456">
+            <small style="color:var(--camo-tan); display:block; margin-top:3px">Demo bypass code: <strong>123456</strong></small>
+          </div>
+
+          <button id="loginSubmit" class="primary-btn" style="width:100%; margin-top:16px; justify-content:center">
+            AUTHORIZE & SIGN IN <span>→</span>
+          </button>
+          <div id="loginMessage" class="form-message" role="status"></div>
+          
+          <div id="citizenJoin" style="margin-top:14px; text-align:center; font-size:11px; color:var(--text-muted)">
+            New citizen? <button id="showSignup" class="small-btn" style="margin-left:5px">Create account</button>
+          </div>
+          
+          <div id="adminNote" class="hidden" style="margin-top:12px; padding:10px; background:#1b2419; border-left:3px solid var(--camo-gold); font-size:11px; color:var(--camo-tan)">
+            Control Room Officer account: <strong>admin@rakshanet.local</strong>
+          </div>
+        </div>
+
+        <div id="signupPanel" class="hidden">
+          <label class="label" for="fullName">Full Name</label>
+          <input id="fullName" placeholder="Full name">
+          <label class="label" for="aadhaar">Aadhaar Number (12 Digits)</label>
+          <input id="aadhaar" placeholder="12-digit Aadhaar (Verhoeff checksum checked)">
+          <label class="label" for="mobile">Mobile Number</label>
+          <input id="mobile" placeholder="+91 98765 43210">
+          <label class="label" for="signupEmail">Email address</label>
+          <input id="signupEmail" type="email" placeholder="you@example.com">
+          <label class="label" for="signupPassword">Password</label>
+          <input id="signupPassword" type="password" placeholder="10+ characters with symbols">
+          <label class="label" for="confirmPassword">Retype Password</label>
+          <input id="confirmPassword" type="password" placeholder="Confirm password">
+
+          <button id="registerSubmit" class="primary-btn" style="width:100%; margin-top:16px; justify-content:center">
+            CREATE VERIFIED CITIZEN ACCOUNT <span>→</span>
+          </button>
+          <div id="signupMessage" class="form-message" role="status"></div>
+          <div style="margin-top:14px; text-align:center; font-size:11px">
+            Already registered? <button id="showLogin" class="small-btn" style="margin-left:5px">Sign in</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- App Shell -->
+  <div id="appShell" class="app-shell hidden camo-border">
+    <aside class="sidebar">
+      <div class="side-label">TACTICAL MODULES</div>
+      <button class="nav-item active" data-page="overview"><span class="nav-symbol">◫</span>Overview</button>
+      <button class="nav-item" data-page="sos"><span class="nav-symbol">⚠️</span>One-Tap Quick SOS</button>
+      <button class="nav-item" data-page="report"><span class="nav-symbol">＋</span>Detailed Report</button>
+      <button class="nav-item" data-page="family"><span class="nav-symbol">⚑</span>Family Safe-Status</button>
+      <button class="nav-item" data-page="tourist"><span class="nav-symbol">▲</span>Tourist Geofence</button>
+      <button class="nav-item" data-page="satellite"><span class="nav-symbol">◉</span>Satellite Layers</button>
+      <button class="nav-item" data-page="alerts"><span class="nav-symbol">◇</span>Voice & Area Alerts</button>
+      <button class="nav-item" data-page="workflow"><span class="nav-symbol">⚡</span>System Workflow (AI)</button>
+
+      <div id="adminNavExtras" class="hidden">
+        <div class="side-label side-label-gap">COMMAND & CONTROL</div>
+        <button class="nav-item" data-page="inbox">
+          <span class="nav-symbol">▤</span>Incident Inbox 
+          <span id="sideInboxCount" class="nav-count hidden">0</span>
+        </button>
+        <button class="nav-item" data-page="audit"><span class="nav-symbol">≡</span>Audit Log Trail</button>
+      </div>
+
+      <div class="side-spacer"></div>
+
+      <div class="side-emergency">
+        <b>EMERGENCY ESCALATION</b>
+        <small>National Response (ERSS)</small>
+        <a href="tel:112">DIAL 112 <span>↗</span></a>
+      </div>
+
+      <div class="side-profile">
+        <div id="avatar" class="avatar">R</div>
+        <div>
+          <b id="profileName">Loading User</b>
+          <small id="profileRole">Citizen Account</small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <div class="workspace-head">
+        <div>
+          <div id="pageCrumb" class="eyebrow">CIVILIAN DEFENCE SYSTEM / OVERVIEW</div>
+          <h1 id="pageTitle">Tactical Safety Overview</h1>
+        </div>
+        <div class="workspace-status">
+          <span class="live-indicator"></span>
+          <span id="connectionLabel" style="font-weight:750; color:var(--tactical-cyan); font-size:11px">LIVE FEED CONNECTED</span>
+        </div>
+      </div>
+
+      <!-- Individual Pages -->
+      <div id="page-overview" class="page"></div>
+      <div id="page-sos" class="page hidden"></div>
+      <div id="page-report" class="page hidden"></div>
+      <div id="page-family" class="page hidden"></div>
+      <div id="page-tourist" class="page hidden"></div>
+      <div id="page-satellite" class="page hidden"></div>
+      <div id="page-alerts" class="page hidden"></div>
+      <div id="page-workflow" class="page hidden"></div>
+      <div id="page-inbox" class="page hidden"></div>
+      <div id="page-audit" class="page hidden"></div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card camo-border hud-box">
+      <button class="modal-x" id="modalClose">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="/vendor/maplibre-gl.js"></script>
+  <script src="/app.js?v=3.0"></script>
+</body>
+</html>
