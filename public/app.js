@@ -49,6 +49,9 @@ const state = {
   page: 'overview',
   activeLayers: { gibs: true, firms: false, bhuvan: false, sentinel: false, streets: false },
   selectedSosCategory: 'Gunshot-like sound',
+  selectedPhoto: null,
+  reports: [],
+  myReports: [],
   port: 5050
 };
 
@@ -967,6 +970,9 @@ function reportFormMarkup(id) {
   const defaultDistrict = districtOptions[0] || { state: defaultState, district: 'Kupwara', lat: 34.52136, lon: 74.20722 };
 
   return `
+    <label class="label" for="${id}Title">Report Title / Incident Headline</label>
+    <input id="${id}Title" placeholder="e.g. Gunfire noise heard near border ridge">
+
     <label class="label" for="${id}State">State / Union Territory</label>
     <select id="${id}State">
       ${stateOptions.map(x => `<option value="${esc(x)}" ${x === defaultState ? 'selected' : ''}>${esc(x)}</option>`).join('')}
@@ -1006,6 +1012,26 @@ function reportFormMarkup(id) {
     </div>
     <label class="label" for="${id}Details">Field Description (Strictly Avoid Names / Troop Info)</label>
     <textarea id="${id}Details" maxlength="1000" rows="3" placeholder="Describe observations, sounds, damage, or urgent needs..."></textarea>
+    
+    <!-- Photo Evidence Upload Input -->
+    <label class="label">Incident Evidence / Photo (Uploaded to Persistent Storage)</label>
+    <div style="background:rgba(0,0,0,0.25); border:1px dashed var(--camo-field); border-radius:6px; padding:12px; margin-bottom:8px">
+      <input type="file" id="${id}Photo" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none">
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+        <button type="button" class="secondary-btn" id="${id}PhotoBtn" style="padding:6px 12px; font-size:11px">
+          <span>📷</span> Choose Evidence Photo
+        </button>
+        <span id="${id}PhotoLabel" style="font-size:11px; color:var(--text-dim)">No image selected (Max 8MB)</span>
+      </div>
+      <div id="${id}PhotoPreviewWrap" class="hidden" style="margin-top:10px; display:flex; align-items:center; gap:12px">
+        <img id="${id}PhotoPreview" src="" alt="Evidence" style="max-height:90px; border-radius:4px; border:1px solid var(--camo-gold); object-fit:cover">
+        <div>
+          <div id="${id}PhotoFileInfo" style="font-size:11px; color:var(--camo-bone); font-weight:600"></div>
+          <button type="button" class="small-btn danger" id="${id}PhotoRemove" style="font-size:10px; margin-top:6px">✕ Remove Photo</button>
+        </div>
+      </div>
+    </div>
+
     <button id="${id}Submit" class="primary-btn" style="width:100%; margin-top:14px; justify-content:center">
       TRANSMIT VERIFIED SAFETY REPORT <span>→</span>
     </button>
@@ -1021,6 +1047,46 @@ function bindReportForms() {
     st.onchange = () => fillDistrict('full');
     di.onchange = () => showCoords('full');
     $('fullSubmit').onclick = () => submitReport('full');
+
+    const photoBtn = $('fullPhotoBtn');
+    const photoInput = $('fullPhoto');
+    const photoPreviewWrap = $('fullPhotoPreviewWrap');
+    const photoPreview = $('fullPhotoPreview');
+    const photoLabel = $('fullPhotoLabel');
+    const photoFileInfo = $('fullPhotoFileInfo');
+    const photoRemove = $('fullPhotoRemove');
+
+    if (photoBtn && photoInput) {
+      photoBtn.onclick = () => photoInput.click();
+      photoInput.onchange = () => {
+        const file = photoInput.files[0];
+        if (!file) return;
+        if (file.size > 8 * 1024 * 1024) {
+          toast('Photo exceeds 8MB limit. Please choose a smaller image.', true);
+          photoInput.value = '';
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = e => {
+          const dataUrl = e.target.result;
+          state.selectedPhoto = { file, dataUrl, filename: file.name, mimeType: file.type };
+          if (photoPreview) photoPreview.src = dataUrl;
+          if (photoPreviewWrap) photoPreviewWrap.classList.remove('hidden');
+          if (photoLabel) photoLabel.textContent = file.name;
+          if (photoFileInfo) photoFileInfo.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        };
+        reader.readAsDataURL(file);
+      };
+    }
+
+    if (photoRemove) {
+      photoRemove.onclick = () => {
+        state.selectedPhoto = null;
+        if (photoInput) photoInput.value = '';
+        if (photoPreviewWrap) photoPreviewWrap.classList.add('hidden');
+        if (photoLabel) photoLabel.textContent = 'No image selected (Max 8MB)';
+      };
+    }
   }
 }
 
@@ -1153,6 +1219,78 @@ function showCoords(id) {
   box.innerHTML = `<span>◎</span><span><strong>${esc(d.state)} · ${esc(d.district)}</strong> (${Number(d.lat).toFixed(4)}, ${Number(d.lon).toFixed(4)}) - Sector Centroid</span>`;
 }
 
+function getOfflineQueue() {
+  try {
+    return JSON.parse(localStorage.getItem('raksha_offline_queue') || '[]');
+  } catch {
+    return [];
+  }
+}
+
+function saveOfflineQueue(q) {
+  try {
+    localStorage.setItem('raksha_offline_queue', JSON.stringify(q));
+  } catch {}
+}
+
+function enqueueOfflineReport(item) {
+  const q = getOfflineQueue();
+  q.push(item);
+  saveOfflineQueue(q);
+}
+
+let isSyncingQueue = false;
+async function syncOfflineQueue() {
+  if (isSyncingQueue || !navigator.onLine) return;
+  const q = getOfflineQueue();
+  if (!q.length) return;
+  isSyncingQueue = true;
+  const remaining = [];
+  for (const item of q) {
+    try {
+      let photoUrl = item.payload.photoUrl || null;
+      if (!photoUrl && item.photoDataUrl) {
+        const up = await api('/api/upload', {
+          method: 'POST',
+          body: JSON.stringify({
+            dataUrl: item.photoDataUrl,
+            filename: item.photoName || 'evidence.jpg',
+            mimeType: item.mimeType || 'image/jpeg'
+          })
+        });
+        if (up && up.url) photoUrl = up.url;
+      }
+      const payload = { ...item.payload, photoUrl, photoName: item.photoName };
+      delete payload.photoDataUrl;
+      const res = await api('/api/reports', { method: 'POST', body: JSON.stringify(payload) });
+      toast(`📡 Offline report #${res.id.slice(0, 8)} synchronized with Control Room!`);
+      playRadarChirp('chirp');
+      loadCounts();
+      if (state.page === 'report') loadMyReports();
+      if (state.page === 'inbox') loadInbox();
+    } catch {
+      remaining.push(item);
+    }
+  }
+  saveOfflineQueue(remaining);
+  isSyncingQueue = false;
+}
+
+function resetReportForm(id) {
+  const det = $(`${id}Details`);
+  if (det) det.value = '';
+  const tit = $(`${id}Title`);
+  if (tit) tit.value = '';
+  state.selectedPhoto = null;
+  const photoInput = $(`${id}Photo`);
+  if (photoInput) photoInput.value = '';
+  const previewWrap = $(`${id}PhotoPreviewWrap`);
+  if (previewWrap) previewWrap.classList.add('hidden');
+  const photoLabel = $(`${id}PhotoLabel`);
+  if (photoLabel) photoLabel.textContent = 'No image selected (Max 8MB)';
+  $$(`[data-med="${id}"]`).forEach(c => c.checked = false);
+}
+
 async function submitReport(id) {
   const d = chosenDistrict(id);
   const status = $(`${id}Status`), btn = $(`${id}Submit`);
@@ -1160,26 +1298,79 @@ async function submitReport(id) {
     formMsg(status, 'Please select state and district from directory', 'error');
     return;
   }
-  const x = {
+  const title = String($(`${id}Title`)?.value || '').trim();
+  const details = String($(`${id}Details`)?.value || '').trim();
+  const photo = state.selectedPhoto || null;
+  const clientId = crypto.randomUUID();
+
+  const payload = {
+    title,
     state: d.state,
     district: d.district,
     category: $(`${id}Category`).value,
     injuryLevel: $(`${id}Injury`).value,
     affectedCount: $(`${id}Affected`).value,
-    details: $(`${id}Details`).value,
+    details,
     medicalNeeds: $$(`[data-med="${id}"]:checked`).map(c => c.value),
-    clientId: crypto.randomUUID()
+    clientId
   };
+
   btn.disabled = true;
-  formMsg(status, 'Transmitting report to control room...');
+  formMsg(status, 'Verifying connection & transmitting report...');
+
+  // If client is currently offline without wifi/signal:
+  if (!navigator.onLine) {
+    enqueueOfflineReport({
+      payload,
+      photoDataUrl: photo?.dataUrl || null,
+      photoName: photo?.filename || null,
+      mimeType: photo?.mimeType || 'image/jpeg',
+      queuedAt: new Date().toISOString()
+    });
+    formMsg(status, '📶 Offline Mode: Report saved in local device storage. It will synchronize automatically in the same minute connection is detected.', 'success');
+    toast('Report saved in local offline queue');
+    resetReportForm(id);
+    btn.disabled = false;
+    return;
+  }
+
   try {
-    const res = await api('/api/reports', { method: 'POST', body: JSON.stringify(x) });
-    formMsg(status, `Received by Control Room · Trust Score: ${res.trustScore}% · Ref: ${res.id.slice(0, 8)}`, 'success');
-    toast('Safety report delivered successfully');
-    $(`${id}Details`).value = '';
+    let photoUrl = null;
+    if (photo && photo.dataUrl) {
+      formMsg(status, 'Uploading evidence photo to persistent storage...');
+      const up = await api('/api/upload', {
+        method: 'POST',
+        body: JSON.stringify({
+          dataUrl: photo.dataUrl,
+          filename: photo.filename,
+          mimeType: photo.mimeType
+        })
+      });
+      if (up && up.url) photoUrl = up.url;
+    }
+
+    payload.photoUrl = photoUrl;
+    payload.photoName = photo ? photo.filename : null;
+
+    formMsg(status, 'Delivering to District Control Room...');
+    const res = await api('/api/reports', { method: 'POST', body: JSON.stringify(payload) });
+    formMsg(status, `Delivered to Control Room · Trust Score: ${res.trustScore}% · Ref: #${res.id.slice(0, 8)}`, 'success');
+    toast('Safety report delivered successfully to Control Room!');
+    playRadarChirp('chirp');
+    resetReportForm(id);
     loadMyReports();
+    loadCounts();
   } catch (e) {
-    formMsg(status, e.message, 'error');
+    // If request failed due to network disruption, queue it safely
+    enqueueOfflineReport({
+      payload,
+      photoDataUrl: photo?.dataUrl || null,
+      photoName: photo?.filename || null,
+      mimeType: photo?.mimeType || 'image/jpeg',
+      queuedAt: new Date().toISOString()
+    });
+    formMsg(status, '⚠️ Network interrupted: Report preserved in local device queue. Will auto-sync to Control Room when connection is restored.', 'error');
+    toast('Network interrupted: Report stored in offline queue');
   } finally {
     btn.disabled = false;
   }
@@ -1324,6 +1515,9 @@ window.composeClusterAlert = (district, category, reportId) => {
 function renderReports(list, id, actions = false) {
   const el = $(id);
   if (!el) return;
+  if (actions) state.reports = list;
+  else state.myReports = list;
+
   if (!list.length) {
     el.innerHTML = '<div style="padding:16px; color:var(--text-muted); text-align:center">No reports yet.</div>';
     return;
@@ -1331,17 +1525,51 @@ function renderReports(list, id, actions = false) {
   el.innerHTML = list.map(r => `
     <article class="report-row camo-border">
       <div class="report-row-top">
-        <b>${esc(r.category)}</b>
+        <div>
+          <b style="color:var(--camo-bone); font-size:13px">${esc(r.title || r.category)}</b>
+          <small style="color:var(--camo-gold); margin-left:6px; font-weight:700">#${esc(r.id.slice(0, 8))}</small>
+          <span style="font-size:10px; color:var(--camo-sand); margin-left:8px">${fmt(r.createdAt)}</span>
+        </div>
         <span class="status-pill ${r.status === 'Marked false' ? 'false' : r.verified ? '' : 'unverified'}">
           ${esc(r.status)}
         </span>
       </div>
-      <div style="font-size:11px; color:var(--camo-tan); margin:4px 0">
-        ${esc(r.state)} · ${esc(r.district)} · Trust: <strong>${r.trustScore || 85}%</strong>
+
+      <div style="font-size:11px; color:var(--camo-tan); margin:5px 0; display:flex; align-items:center; flex-wrap:wrap; gap:8px">
+        <span>📍 <strong>${esc(r.district)}, ${esc(r.state)}</strong></span>
+        <span>· Trust: <strong style="color:var(--safe-green)">${r.trustScore || 85}%</strong></span>
+        <span>· Category: <strong>${esc(r.category)}</strong></span>
+        ${r.injuryLevel && r.injuryLevel !== 'None' ? `<span class="tactical-badge red" style="padding:1px 6px">Injury: ${esc(r.injuryLevel)}</span>` : ''}
       </div>
-      <p style="font-size:11px; margin:4px 0; color:var(--camo-bone)">${esc(r.details || 'No additional notes provided.')}</p>
+
       ${actions ? `
-        <div class="incident-actions">
+        <div style="font-size:11px; margin:4px 0; padding:4px 8px; background:rgba(0,0,0,0.25); border-radius:4px; display:flex; align-items:center; justify-content:space-between">
+          <span>👤 Reporter: <strong style="color:var(--camo-bone)">${esc(r.userName || 'Verified Citizen')}</strong></span>
+          <button type="button" class="small-btn" style="padding:2px 8px; font-size:10px; border-color:var(--camo-gold)" onclick="viewReporterProfile('${r.userId}')">
+            👤 View Reporter Profile
+          </button>
+        </div>
+      ` : ''}
+
+      <p style="font-size:11px; margin:5px 0; color:var(--camo-bone); line-height:1.4">${esc(r.details || 'No additional notes provided.')}</p>
+
+      ${r.photoUrl ? `
+        <div style="display:flex; align-items:center; gap:10px; margin:8px 0; padding:6px 10px; background:#121c13; border-radius:6px; border:1px solid var(--camo-field)">
+          <img src="${esc(r.photoUrl)}" alt="Evidence" style="width:52px; height:52px; object-fit:cover; border-radius:4px; border:1px solid var(--camo-gold); cursor:pointer" onclick="openFullPhoto('${esc(r.photoUrl)}', '${esc(r.title || r.category)}')">
+          <div style="flex:1">
+            <div style="font-size:11px; font-weight:700; color:var(--camo-gold)">📷 Evidence Attached</div>
+            <small style="color:var(--text-dim); font-size:10px">${esc(r.photoName || 'evidence.jpg')}</small>
+          </div>
+          <button type="button" class="small-btn" style="font-size:10px" onclick="viewFullReport('${r.id}')">🔍 Open Full Report & Photo</button>
+        </div>
+      ` : `
+        <div style="margin:4px 0">
+          <button type="button" class="small-btn" style="font-size:10px" onclick="viewFullReport('${r.id}')">🔍 View Complete Report</button>
+        </div>
+      `}
+
+      ${actions ? `
+        <div class="incident-actions" style="margin-top:8px">
           <button class="small-btn" onclick="doAction('${r.id}', 'verify')" ${r.verified ? 'disabled' : ''}>Verify</button>
           <button class="small-btn" onclick="composeClusterAlert('${r.district}', '${r.category}', '${r.id}')" ${!r.verified ? 'disabled' : ''}>Issue Alert</button>
           <button class="small-btn" onclick="doAction('${r.id}', 'resolve')" ${!r.verified ? 'disabled' : ''}>Resolve</button>
@@ -1351,6 +1579,143 @@ function renderReports(list, id, actions = false) {
     </article>
   `).join('');
 }
+
+window.viewFullReport = (reportId) => {
+  const r = (state.reports || []).find(x => x.id === reportId) || (state.myReports || []).find(x => x.id === reportId);
+  if (!r) {
+    toast('Report details not found', true);
+    return;
+  }
+  const isOfficer = ['officer', 'super_admin'].includes(state.user?.role);
+  modal(`
+    <div class="full-report-modal">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; border-bottom:1px solid var(--camo-olive); padding-bottom:10px">
+        <div>
+          <span class="tactical-badge ${r.verified ? 'cyan' : 'gold'}">${r.verified ? 'OFFICER VERIFIED' : 'PENDING VERIFICATION'}</span>
+          <h2 style="margin:4px 0 0; color:var(--camo-bone); font-size:18px">${esc(r.title || r.category)}</h2>
+          <small style="color:var(--text-dim)">Reference: #${esc(r.id)} · Submitted: ${fmt(r.createdAt)}</small>
+        </div>
+        <span class="status-pill ${r.status === 'Marked false' ? 'false' : r.verified ? '' : 'unverified'}">${esc(r.status)}</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:12px; background:#142015; padding:12px; border-radius:6px; border:1px solid var(--camo-field); margin-bottom:12px">
+        <div><span style="color:var(--camo-tan)">Category:</span> <b style="color:#fff">${esc(r.category)}</b></div>
+        <div><span style="color:var(--camo-tan)">Trust Score:</span> <b style="color:var(--safe-green)">${r.trustScore || 85}%</b></div>
+        <div><span style="color:var(--camo-tan)">Sector Location:</span> <b style="color:#fff">${esc(r.district)}, ${esc(r.state)}</b></div>
+        <div><span style="color:var(--camo-tan)">GPS Centroid:</span> <b style="color:#fff">${Number(r.lat || 0).toFixed(4)}, ${Number(r.lon || 0).toFixed(4)}</b></div>
+        <div><span style="color:var(--camo-tan)">Injury Level:</span> <b style="color:#fff">${esc(r.injuryLevel || 'None')}</b></div>
+        <div><span style="color:var(--camo-tan)">Persons Affected:</span> <b style="color:#fff">${r.affectedCount || 1}</b></div>
+      </div>
+
+      ${isOfficer ? `
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 12px; background:#182618; border-radius:6px; border:1px solid var(--camo-gold); margin-bottom:12px">
+          <div>
+            <span style="font-size:11px; color:var(--camo-tan)">Reporting Citizen Account:</span>
+            <div style="font-weight:750; color:var(--camo-bone); font-size:13px">👤 ${esc(r.userName || 'Verified Citizen')}</div>
+          </div>
+          <button type="button" class="camo-action-btn" style="padding:4px 10px; font-size:11px" onclick="viewReporterProfile('${r.userId}')">
+            👤 View Reporter Profile & Mobile <span>→</span>
+          </button>
+        </div>
+      ` : ''}
+
+      <div style="margin-bottom:12px">
+        <label class="label" style="margin-bottom:4px">Incident Description / Witness Statement</label>
+        <div style="background:#111a12; border:1px solid var(--camo-field); border-radius:6px; padding:10px; font-size:12px; color:var(--camo-bone); line-height:1.4">
+          ${esc(r.details || 'No description provided by reporter.')}
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px">
+        <label class="label" style="margin-bottom:4px">Attached Photo / Visual Evidence</label>
+        ${r.photoUrl ? `
+          <div style="text-align:center; background:#0d140e; border:1px solid var(--camo-field); border-radius:6px; padding:10px">
+            <a href="${esc(r.photoUrl)}" target="_blank" rel="noopener" title="Click to view full size in new tab">
+              <img src="${esc(r.photoUrl)}" alt="Evidence Photo" style="max-width:100%; max-height:360px; object-fit:contain; border-radius:6px; border:1px solid var(--camo-gold)">
+            </a>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px; font-size:11px">
+              <span style="color:var(--camo-tan)">File: <strong>${esc(r.photoName || 'evidence.jpg')}</strong></span>
+              <a href="${esc(r.photoUrl)}" target="_blank" download class="small-btn" style="font-size:10px">⬇️ Download Photo</a>
+            </div>
+          </div>
+        ` : `
+          <div style="padding:16px; background:#111a12; border:1px solid var(--camo-field); border-radius:6px; text-align:center; color:var(--text-dim); font-size:12px">
+            No photo or image evidence attached with this report submission.
+          </div>
+        `}
+      </div>
+
+      ${isOfficer ? `
+        <div class="incident-actions" style="border-top:1px solid var(--camo-olive); padding-top:12px">
+          <button class="small-btn" onclick="doAction('${r.id}', 'verify'); $('modal').classList.add('hidden');" ${r.verified ? 'disabled' : ''}>Verify Report</button>
+          <button class="small-btn" onclick="$('modal').classList.add('hidden'); composeClusterAlert('${r.district}', '${r.category}', '${r.id}')" ${!r.verified ? 'disabled' : ''}>Issue Alert</button>
+          <button class="small-btn" onclick="doAction('${r.id}', 'resolve'); $('modal').classList.add('hidden');" ${!r.verified ? 'disabled' : ''}>Mark Resolved</button>
+          <button class="small-btn danger" onclick="doAction('${r.id}', 'false'); $('modal').classList.add('hidden');" ${r.status === 'Marked false' ? 'disabled' : ''}>Mark False</button>
+        </div>
+      ` : ''}
+    </div>
+  `);
+};
+
+window.viewReporterProfile = async (userId) => {
+  try {
+    toast('Fetching reporter profile...');
+    const res = await api('/api/authority/users/' + encodeURIComponent(userId));
+    const p = res.user;
+    modal(`
+      <div class="reporter-profile-modal">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--camo-olive); padding-bottom:12px">
+          <div class="avatar" style="width:48px; height:48px; font-size:20px">${esc((p.fullName || 'U')[0].toUpperCase())}</div>
+          <div>
+            <h3 style="margin:0; color:var(--camo-bone); font-size:18px">${esc(p.fullName)}</h3>
+            <span class="tactical-badge ${p.identityStatus.includes('Verified') ? 'cyan' : 'gold'}">${esc(p.identityStatus)}</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:12px; background:#142015; padding:12px; border-radius:6px; border:1px solid var(--camo-field); margin-bottom:14px">
+          <div><span style="color:var(--camo-tan)">📞 Mobile:</span> <b style="color:#fff; font-family:monospace">${esc(p.mobile || 'Not provided')}</b></div>
+          <div><span style="color:var(--camo-tan)">✉️ Email:</span> <b style="color:#fff">${esc(p.email)}</b></div>
+          <div><span style="color:var(--camo-tan)">📅 Registered:</span> <b style="color:#fff">${fmt(p.createdAt)}</b></div>
+          <div><span style="color:var(--camo-tan)">📊 Total Reports:</span> <b style="color:var(--camo-gold)">${p.reportsCount}</b></div>
+        </div>
+
+        <h4 style="margin:10px 0 6px; font-size:12px; color:var(--camo-bone)">Past Submissions from this Reporter (${p.reportsCount})</h4>
+        <div style="max-height:220px; overflow-y:auto; border:1px solid var(--camo-field); border-radius:6px; background:#111a12">
+          ${p.reports && p.reports.length ? p.reports.map(r => `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; border-bottom:1px solid rgba(255,255,255,0.06); font-size:11px">
+              <div>
+                <b>${esc(r.title || r.category)}</b> · <span style="color:var(--camo-tan)">${esc(r.district)}, ${esc(r.state)}</span>
+                <small style="display:block; color:var(--text-dim)">${fmt(r.createdAt)}</small>
+              </div>
+              <div style="text-align:right">
+                <span class="status-pill ${r.status === 'Marked false' ? 'false' : r.verified ? '' : 'unverified'}">${esc(r.status)}</span>
+                ${r.photoUrl ? '<span style="font-size:10px; color:var(--camo-gold); display:block; margin-top:2px">📷 Photo</span>' : ''}
+              </div>
+            </div>
+          `).join('') : '<div style="color:var(--text-dim); padding:12px; text-align:center">No past reports from this account.</div>'}
+        </div>
+      </div>
+    `);
+  } catch (err) {
+    toast('Unable to load reporter profile: ' + err.message, true);
+  }
+};
+
+window.openFullPhoto = (url, caption) => {
+  modal(`
+    <div style="text-align:center">
+      <h3 style="color:var(--camo-bone); margin-top:0">${esc(caption || 'Incident Evidence')} - Original Photo</h3>
+      <div style="background:#0b120c; border:2px solid var(--camo-gold); border-radius:8px; padding:10px; margin:10px 0; box-shadow:0 4px 24px rgba(0,0,0,0.8)">
+        <img src="${esc(url)}" alt="Original Evidence Photo" style="max-width:100%; max-height:70vh; object-fit:contain; border-radius:4px">
+      </div>
+      <div style="margin-top:10px">
+        <a href="${esc(url)}" download target="_blank" rel="noopener" class="camo-action-btn" style="display:inline-flex; padding:6px 16px; font-size:12px">
+          ⬇️ Download Original High-Res Image
+        </a>
+      </div>
+    </div>
+  `);
+};
 
 window.doAction = async (id, action) => {
   try {
@@ -1552,11 +1917,16 @@ function connectEvents() {
     state.events.onmessage = e => {
       try {
         const d = JSON.parse(e.data);
-        if (d.type === 'report') {
+        if (d.type === 'report' || d.type === 'update') {
           playRadarChirp('chirp');
           toast('New border safety signal detected');
           loadCounts();
-          if (state.page === 'inbox') loadInbox();
+          if (state.user?.role === 'officer') {
+            loadInbox();
+          }
+          if (state.user?.role === 'citizen') {
+            loadMyReports();
+          }
         }
         if (d.type === 'alert') {
           playRadarChirp('alert');
@@ -1569,6 +1939,13 @@ function connectEvents() {
 }
 
 async function init() {
+  window.addEventListener('online', () => {
+    toast('📶 Connection restored. Synchronizing offline reports...');
+    syncOfflineQueue();
+  });
+  setInterval(syncOfflineQueue, 15000);
+  syncOfflineQueue();
+
   try {
     const h = await api('/api/health');
     state.port = h.port || 5050;

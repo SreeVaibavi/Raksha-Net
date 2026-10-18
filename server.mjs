@@ -390,7 +390,11 @@ const mime = {
   '.json': 'application/json; charset=utf-8',
   '.webmanifest': 'application/manifest+json',
   '.svg': 'image/svg+xml',
-  '.png': 'image/png'
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.gif': 'image/gif'
 };
 
 const server = createServer(async (req, res) => {
@@ -552,6 +556,40 @@ const server = createServer(async (req, res) => {
       return send(res, 200, db.reports.filter(r => r.userId === u.id).sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
     }
 
+    // Upload Evidence Photo
+    if (req.method === 'POST' && path === '/api/upload') {
+      const u = auth(req, res, ['citizen', 'super_admin', 'officer']);
+      if (!u) return;
+      try {
+        const x = await body(req, 10 * 1024 * 1024); // Up to 10MB
+        const dataUrl = String(x.dataUrl || '');
+        const match = dataUrl.match(/^data:(image\/(jpeg|png|webp|gif));base64,(.+)$/);
+        if (!match) return send(res, 400, { error: 'Invalid image format. Supported formats: JPEG, PNG, WEBP, GIF.' });
+
+        const mimeType = match[1];
+        const rawBase64 = match[3];
+        const ext = mimeType === 'image/jpeg' ? '.jpg' : mimeType === 'image/png' ? '.png' : mimeType === 'image/webp' ? '.webp' : '.gif';
+        const buffer = Buffer.from(rawBase64, 'base64');
+        if (buffer.length > 8 * 1024 * 1024) return send(res, 400, { error: 'Image file exceeds 8MB size limit' });
+
+        const uploadsDir = join(root, 'public', 'uploads');
+        await mkdir(uploadsDir, { recursive: true });
+        const cleanName = `evidence-${Date.now()}-${randomUUID().slice(0, 8)}${ext}`;
+        const filePath = join(uploadsDir, cleanName);
+        await writeFile(filePath, buffer);
+
+        return send(res, 201, {
+          ok: true,
+          url: `/uploads/${cleanName}`,
+          filename: String(x.filename || cleanName).slice(0, 80),
+          size: buffer.length,
+          mimeType
+        });
+      } catch (err) {
+        return send(res, 400, { error: 'Upload failed: ' + (err.message || 'Invalid payload') });
+      }
+    }
+
     // Submit Report (One-Tap SOS or Full Report)
     if (req.method === 'POST' && path === '/api/reports') {
       const u = auth(req, res, ['citizen', 'super_admin', 'officer']);
@@ -565,13 +603,16 @@ const server = createServer(async (req, res) => {
       const dup = db.reports.find(r => r.userId === u.id && r.clientId === idempotency);
       if (dup) return send(res, 200, { id: dup.id, status: dup.status, receivedAt: dup.createdAt, duplicate: true });
 
+      const hasEvidence = Boolean(x.photoUrl);
       const countNearby = db.reports.filter(r => r.district === d.district && r.category === x.category && Date.now() - Date.parse(r.createdAt) < 30 * 60000).length;
-      const trustScore = calculateTrustScore(countNearby + 1, x.injuryLevel !== 'None', Boolean(x.hasEvidence), false, true);
+      const trustScore = calculateTrustScore(countNearby + 1, x.injuryLevel !== 'None', hasEvidence, false, true);
 
       const report = {
         id: randomUUID(),
         userId: u.id,
         userName: u.fullName,
+        userMobile: u.mobile || '',
+        title: String(x.title || x.category || '').trim().slice(0, 120),
         category: x.category,
         state: d.state,
         district: d.district,
@@ -582,7 +623,9 @@ const server = createServer(async (req, res) => {
         injuryLevel: ['None', 'Minor', 'Serious', 'Critical'].includes(x.injuryLevel) ? x.injuryLevel : 'None',
         medicalNeeds: Array.isArray(x.medicalNeeds) ? x.medicalNeeds : [],
         affectedCount: Math.max(1, Math.min(100, Number(x.affectedCount) || 1)),
-        hasEvidence: false,
+        photoUrl: x.photoUrl && typeof x.photoUrl === 'string' && x.photoUrl.startsWith('/uploads/') ? x.photoUrl : null,
+        photoName: x.photoName ? String(x.photoName).slice(0, 80) : null,
+        hasEvidence,
         trustScore,
         status: 'Received by control room',
         verified: false,
@@ -666,10 +709,10 @@ const server = createServer(async (req, res) => {
         myStatus: myStatus || { status: 'Safe', note: 'All family members accounted for', updatedAt: new Date().toISOString() },
         totalReports: db.family.length,
         networkCounts: {
-          safe: db.family.filter(f => f.status === 'Safe').length + 42,
-          shelter: db.family.filter(f => f.status === 'In Shelter').length + 8,
-          needHelp: db.family.filter(f => f.status === 'Need Help').length + 2,
-          injured: db.family.filter(f => f.status === 'Injured').length + 1
+          safe: db.family.filter(f => f.status === 'Safe').length,
+          shelter: db.family.filter(f => f.status === 'In Shelter').length,
+          needHelp: db.family.filter(f => f.status === 'Need Help').length,
+          injured: db.family.filter(f => f.status === 'Injured').length
         }
       });
     }
@@ -735,6 +778,44 @@ const server = createServer(async (req, res) => {
       const u = auth(req, res, ['officer', 'super_admin']);
       if (!u) return;
       return send(res, 200, db.reports.filter(r => r.status !== 'Marked false').sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
+    }
+
+    // Authority Reporter Profile (Verified user info & submitted reports)
+    const reporterUserMatch = path.match(/^\/api\/authority\/users\/([\w-]+)$/);
+    if (req.method === 'GET' && reporterUserMatch) {
+      const u = auth(req, res, ['officer', 'super_admin']);
+      if (!u) return;
+      const targetId = reporterUserMatch[1];
+      const targetUser = db.users.find(a => a.id === targetId);
+      if (!targetUser) return send(res, 404, { error: 'Reporter user account not found' });
+      const userReports = db.reports.filter(r => r.userId === targetUser.id).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+      return send(res, 200, {
+        ok: true,
+        user: {
+          id: targetUser.id,
+          fullName: targetUser.fullName,
+          email: targetUser.email,
+          mobile: targetUser.mobile || 'Not provided',
+          role: targetUser.role,
+          identityStatus: targetUser.identityStatus || 'Format-validated citizen',
+          emailVerified: Boolean(targetUser.emailVerified),
+          mobileVerified: Boolean(targetUser.mobileVerified),
+          createdAt: targetUser.createdAt,
+          reportsCount: userReports.length,
+          reports: userReports.map(r => ({
+            id: r.id,
+            title: r.title || r.category,
+            category: r.category,
+            state: r.state,
+            district: r.district,
+            details: r.details,
+            photoUrl: r.photoUrl || null,
+            status: r.status,
+            verified: r.verified,
+            createdAt: r.createdAt
+          }))
+        }
+      });
     }
 
     // Authority clusters
