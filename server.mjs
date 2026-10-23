@@ -404,11 +404,11 @@ const server = createServer(async (req, res) => {
 
     // Health
     if (req.method === 'GET' && path === '/api/health') {
-      const port = Number(process.env.PORT) || 5050;
+      const activePort = req.socket?.localPort || Number(process.env.PORT) || 4173;
       return send(res, 200, {
         ok: true,
         service: 'RakshaNet Civilian Safety & Border Alert Platform',
-        port,
+        port: activePort,
         satellite: 'NASA GIBS, ISRO Bhuvan, Sentinel-1/2 Ready',
         districtSource: 'Survey of India / Esri Administrative Boundaries',
         reports: db.reports.length,
@@ -998,14 +998,25 @@ const server = createServer(async (req, res) => {
   }
 });
 
-const port = Number(process.env.PORT) || 5050;
-server.listen(port, '127.0.0.1', () => {
+const primaryPort = Number(process.env.PORT) || 4173;
+const secondaryPort = primaryPort === 4173 ? 5050 : 4173;
+
+server.listen(primaryPort, '127.0.0.1', () => {
   console.log(`===================================================================`);
   console.log(`  RAKSHANET (v2.2) - AI-ASSISTED BORDER SAFETY & CIVILIAN DEFENCE  `);
   console.log(`  CAMOUFLAGE MILITARY EDITION · TEAM NEXUS, EASWARI ENG. COLLEGE  `);
-  console.log(`  Listening on: http://localhost:${port}                           `);
+  console.log(`  Listening on: http://localhost:${primaryPort}                   `);
   console.log(`===================================================================`);
 });
+
+// Also bind secondary port so both 4173 and 5050 are active
+try {
+  const secondaryServer = createServer(server.listeners('request')[0]);
+  secondaryServer.listen(secondaryPort, '127.0.0.1', () => {
+    console.log(`  Also listening on: http://localhost:${secondaryPort}`);
+  });
+  secondaryServer.on('error', () => {});
+} catch {}
 
 setInterval(() => {
   for (const c of clients) c.res.write(': heartbeat\n\n');
