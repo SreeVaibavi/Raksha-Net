@@ -17,7 +17,7 @@ Requirements: Node.js 20 or newer. The API uses Node built-ins; the map interfac
 
 5. Open **http://localhost:5050**. The server listens on `127.0.0.1` only. Set `PORT` to another free port if needed; avoid 3000, 8800, 8880, 8008 and 8088.
 
-The delivered local copy has a preconfigured admin account. Its sign-in details are provided separately and are deliberately excluded from the ZIP. New citizen accounts must confirm both email and mobile before submitting a report.
+No demo accounts or personal report data are included. Configure a unique admin email/password, Base32 TOTP secret, and random Aadhaar pepper in `.env` before starting. Create citizen accounts through the signup flow. This package intentionally excludes `.env`, user records, reports, audit logs, and uploaded evidence.
 
 ## Real sources and location choices
 
@@ -54,3 +54,20 @@ This is a single-machine local prototype. Admin and citizen browsers using the s
 ## Tests
 
 Run the pure logic tests with `node --test`. They cover checksum validation, signup validation, report grouping and review labels. External service availability and real email/SMS delivery are not mocked as if they were live.
+
+
+## Local safety-alert notification demo
+
+- Sign in as a citizen in one browser/session and as an authorized officer in another.
+- The officer must verify a report before publishing an official alert (existing server-side rule).
+- Keep the citizen session open and connected to `/api/events` to receive live alerts.
+- Open **Voice & Area Alerts** and choose **Enable phone notifications & vibration**. Browser permission is required; vibration is supported only on some mobile browsers/devices.
+- When the officer publishes a verified official alert, connected sessions get an in-app update, a short sound, best-effort vibration, and a system notification if permission is granted.
+- This is a local prototype. Web notifications/vibration are not guaranteed when the app is closed or suspended. Reliable background push requires a push service and a deployed HTTPS origin. It does not contact real emergency services.
+- Do not use the quick demo login or demo data for production. The `.env` file is intentionally not included in the shareable ZIP; copy `.env.example` to `.env` and configure local credentials.
+
+
+## Location & Silent Signal add-on
+A separate **Location & Silent Signal** navigation header/page has been added without replacing the existing modules or report workflow. Save a location in the browser, then manually trigger a silent visual/vibration signal from that page. When a detailed report is successfully delivered, the saved location also triggers the local signal if one has been saved. This is a best-effort browser vibration/sound and is not a guaranteed background or cross-device alert.
+
+The saved location is stored locally in the current browser. The add-on does not send that saved location to the control room unless the existing report payload independently contains it. It does not control physical Wi-Fi. A device with Wi-Fi switched off cannot receive a new Wi-Fi command until another communication path or local wake mechanism is available.

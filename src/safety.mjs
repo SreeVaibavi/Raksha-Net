@@ -45,20 +45,57 @@ export function calculateTrustScore(count, hasInjury, hasEvidence, verified, isR
 }
 
 export function recommendAgency(category, injuryLevel){
-  if(['Gunshot-like sound','Explosion-like sound','Violence or attack','Suspicious activity','Border-area emergency'].includes(category)){
-    return 'Local Police Quick Reaction Team (QRT)';
+  // Immediate medical & casualty evacuation
+  if(['Serious','Critical'].includes(injuryLevel) || category === 'Medical emergency'){
+    return 'Military Field Hospital & Emergency Ambulance (Dial 108)';
   }
-  if(['Medical emergency'].includes(category) || ['Serious','Critical'].includes(injuryLevel)){
-    return 'Civilian Hospital & Emergency Medical Team';
+  if(category === 'Gunshot-like sound'){
+    return 'Border Security Force (BSF) & Army Tactical Unit';
   }
-  if(['Fire','Flood','Landslide','Stranded citizens'].includes(category)){
-    return 'Disaster Management & Rescue Taskforce';
+  if(category === 'Explosion-like sound'){
+    return 'Military Bomb Disposal Squad (BDDS) & Artillery Surveillance';
   }
-  return 'District Emergency Control Room (112)';
+  if(category === 'Border-area emergency'){
+    return 'Frontier Defence Command & Army Forward Detachment';
+  }
+  if(category === 'Suspicious unattended object'){
+    return 'Bomb Detection & Disposal Squad (BDDS)';
+  }
+  if(category === 'Suspicious activity'){
+    return 'Border Intelligence & Sector Reconnaissance Patrol';
+  }
+  if(category === 'Violence or attack'){
+    return 'Armed Police Battalions & Law Enforcement Taskforce (Dial 100)';
+  }
+  if(category === 'Fire'){
+    return 'Fire & Emergency Rescue Services (Dial 101)';
+  }
+  if(category === 'Flood'){
+    return 'National Disaster Response Force (NDRF / SDRF Flood Unit)';
+  }
+  if(category === 'Landslide'){
+    return 'Border Roads Organisation (BRO) & Disaster Taskforce (Dial 1077)';
+  }
+  if(category === 'Stranded citizens'){
+    return 'Civil Defence Corps & High-Altitude Rescue Detachment';
+  }
+  if(category === 'Road blockage'){
+    return 'Border Roads Organisation (BRO) & Highway Patrol';
+  }
+  if(category === 'Missing person'){
+    return 'Sector Search & Rescue Detachment (SAR) & Frontier Police (Dial 100)';
+  }
+  if(category === 'Protest or crowd panic'){
+    return 'District Executive Magistrate & Civil Law Enforcement (Dial 100)';
+  }
+  if(category === 'Unsafe route'){
+    return 'Frontier Traffic Control & Route Reconnaissance Patrol';
+  }
+  return 'District Emergency Control Room (Dial 1077 / 100)';
 }
 
 export function groupReports(reports,now=Date.now()){
-  const cutoff=now-30*60_000,groups=new Map();
+  const cutoff=now-15*60_000,groups=new Map();
   for(const r of reports){
     if(Date.parse(r.createdAt)<cutoff||r.status==='Marked false')continue;
     const key=[r.category,r.state,r.district].join('|');
@@ -112,4 +149,146 @@ export function groupReports(reports,now=Date.now()){
       }))
     };
   });
+}
+
+export const CONFIDENCE_THRESHOLDS = {
+  HIGH_CONFIDENCE: 0.85,
+  MEDIUM_CONFIDENCE: 0.60,
+  REVIEW_REQUIRED: 0.50
+};
+
+export const PRIORITY_LEVELS = {
+  HIGH: 'HIGH',
+  MEDIUM: 'MEDIUM',
+  LOW: 'LOW'
+};
+
+/**
+ * Centralized Threat-Priority Classification (Section 3).
+ * Evaluates incident category, notes, evidence, source, and casualty level.
+ * High priority indicates prompt review needed; does NOT imply pre-verification.
+ */
+export function classifyThreatPriority(incident) {
+  if (!incident) {
+    return { priority: 'LOW', reason: 'Unspecified submission', reviewRequired: true };
+  }
+
+  const cat = String(incident.category || '').toLowerCase();
+  const title = String(incident.title || '').toLowerCase();
+  const details = String(incident.details || '').toLowerCase();
+  const source = String(incident.source || '').toLowerCase();
+  const injury = String(incident.injuryLevel || '').toLowerCase();
+  const ml = incident.mlInference || null;
+
+  // 1. HIGH PRIORITY:
+  // - Gunshot detections or credible reports of active gunfire
+  // - Explosions, mortar, artillery, shelling
+  // - Armed infiltration / ambush / violence
+  // - Frontline soldier tactical transponder distress
+  // - Critical life-threatening injuries
+  // - On-device ML acoustic gunfire match with >=0.75 confidence
+  const isGunfire = cat.includes('gunshot') || title.includes('gunshot') || details.includes('gunshot') || details.includes('gunfire') || details.includes('firing');
+  const isExplosion = cat.includes('explosion') || title.includes('explosion') || details.includes('blast') || details.includes('shelling') || details.includes('artillery') || details.includes('mortar');
+  const isAmbushOrViolence = cat.includes('violence') || title.includes('ambush') || details.includes('ambush') || details.includes('attack');
+  const isSoldierDistress = source.includes('soldier') || source.includes('tactical');
+  const isCriticalCasualty = injury === 'critical';
+  const isHighMlGunshot = Boolean(ml && ml.confidence >= 0.75 && (String(ml.category).toLowerCase().includes('gunshot') || String(ml.category).toLowerCase().includes('explosion')));
+
+  if (isGunfire || isExplosion || isAmbushOrViolence || isSoldierDistress || isCriticalCasualty || isHighMlGunshot) {
+    let reason = 'Acoustic / visual gunfire detection or critical threat indicator';
+    if (isSoldierDistress) {
+      reason = 'Frontline military unit tactical distress burst (high operational priority)';
+    } else if (isHighMlGunshot) {
+      reason = `On-device acoustic transient classifier detected high-energy impulse (${Math.round((ml.confidence || 0) * 100)}% signature fit)`;
+    } else if (isGunfire) {
+      reason = 'Credible report of active weapon discharge / gunfire in frontier sector';
+    } else if (isExplosion) {
+      reason = 'Acoustic / visual blast detonation or heavy ordnance indicator';
+    } else if (isCriticalCasualty) {
+      reason = 'Critical life-threatening casualty reported in border zone';
+    }
+
+    return {
+      priority: PRIORITY_LEVELS.HIGH,
+      reason,
+      reviewRequired: true
+    };
+  }
+
+  // 2. MEDIUM PRIORITY:
+  // - Suspicious activity warranting investigation (perimeter intrusion, drone, unattended object)
+  // - Border-area emergency without confirmed weapon fire
+  // - Munition fire / brush hazard
+  // - Serious or minor injuries
+  const isSuspicious = cat.includes('suspicious') || title.includes('suspicious') || details.includes('drone') || details.includes('perimeter') || details.includes('intrusion') || details.includes('unattended');
+  const isBorderEmergency = cat.includes('border-area emergency');
+  const isFireHazard = cat.includes('fire');
+  const isInjured = injury === 'serious' || injury === 'minor';
+
+  if (isSuspicious || isBorderEmergency || isFireHazard || isInjured) {
+    let reason = 'Unverified frontier activity or perimeter hazard requiring investigation patrol';
+    if (isSuspicious) reason = 'Suspicious perimeter movement or drone sighting reported near boundary';
+    else if (isFireHazard) reason = 'Fire hazard or munition combustion risk approaching settlements';
+    else if (isInjured) reason = 'Civilian casualty requiring medical response coordination';
+
+    return {
+      priority: PRIORITY_LEVELS.MEDIUM,
+      reason,
+      reviewRequired: true
+    };
+  }
+
+  // 3. LOW PRIORITY:
+  // - Other reported activities (floods, landslides, general environmental alerts, administrative inquiries)
+  return {
+    priority: PRIORITY_LEVELS.LOW,
+    reason: 'Civilian non-hostile report (environmental, weather hazard, or routine inquiry)',
+    reviewRequired: false
+  };
+}
+
+/**
+ * False-Positive & Duplicate Detection (Section 4).
+ * Identifies duplicate submissions in same sector without deleting the record.
+ */
+export function detectDuplicateReport(newReport, existingReports = [], timeWindowMs = 15 * 60 * 1000) {
+  if (!newReport || !Array.isArray(existingReports)) {
+    return { isDuplicate: false, primaryReportId: null, reason: null };
+  }
+
+  const newTime = new Date(newReport.createdAt || Date.now()).getTime();
+
+  for (const r of existingReports) {
+    if (r.id === newReport.id) continue;
+    const rTime = new Date(r.createdAt).getTime();
+    if (Math.abs(newTime - rTime) > timeWindowMs) continue;
+
+    // Must match sector and category
+    const sameSector = r.district === newReport.district && r.state === newReport.state;
+    const sameCat = r.category === newReport.category;
+
+    if (sameSector && sameCat) {
+      // Condition A: Same user ID within 15 min window
+      if (newReport.userId && r.userId === newReport.userId) {
+        return {
+          isDuplicate: true,
+          primaryReportId: r.id,
+          reason: `Repeat submission from same reporter in ${r.district} sector within 15 minutes (Ref #${r.id.slice(0, 8)})`
+        };
+      }
+
+      // Condition B: Identical detail text within 5 min window
+      const textA = String(r.details || '').trim();
+      const textB = String(newReport.details || '').trim();
+      if (textA && textA === textB && Math.abs(newTime - rTime) <= 5 * 60 * 1000) {
+        return {
+          isDuplicate: true,
+          primaryReportId: r.id,
+          reason: `Identical text submitted in ${r.district} sector within 5 minutes (Ref #${r.id.slice(0, 8)})`
+        };
+      }
+    }
+  }
+
+  return { isDuplicate: false, primaryReportId: null, reason: null };
 }

@@ -38,8 +38,8 @@
         <span class="port-dot"></span>
         <span id="portDisplay">PORT 5050 · SECURE HOST</span>
       </div>
+      <button id="topHardwareBtn" class="tactical-badge gold hardware-top-btn" title="Open Hardware Beacon & Tactical Transponder Section" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; font-weight:750; border:1px solid var(--camo-gold); background:rgba(212,175,55,0.15)"><span>📡</span> IOT BEACONS: AIRTAG & TAC BOX</button>
       <span class="college-badge">TEAM NEXUS · EASWARI ENG. COLLEGE</span>
-      <span class="tactical-badge gold">100% SOFTWARE</span>
     </div>
 
     <div class="top-account">
@@ -59,9 +59,12 @@
       <div class="demo-login-box hud-box">
         <div class="eyebrow" style="color:var(--camo-gold)">⚡ INSTANT DEMO EVALUATION</div>
         <p style="font-size:11px; margin:4px 0 8px; color:var(--text-dim)">Click to sign in instantly without typing passwords or OTPs:</p>
-        <div class="demo-btns-row">
+        <div class="demo-btns-row" style="flex-wrap:wrap">
           <button id="quickAdminBtn" class="camo-action-btn" style="justify-content:center">
             <span>🎖️</span> Control Room Officer
+          </button>
+          <button id="quickSoldierBtn" class="secondary-btn" style="justify-content:center; border-color:var(--safe-green); color:#85e396">
+            <span>🪖</span> Frontline Soldier (14 RR)
           </button>
           <button id="quickCitizenBtn" class="primary-btn" style="justify-content:center">
             <span>👤</span> Verified Citizen
@@ -87,9 +90,10 @@
           </div>
         </div>
 
-        <div class="demo-btns-row" style="margin:16px 0 14px">
-          <button id="citizenPortalBtn" class="secondary-btn" style="justify-content:center; border-color:var(--camo-gold)">Citizen Portal</button>
-          <button id="adminPortalBtn" class="secondary-btn" style="justify-content:center">Admin Control Room</button>
+        <div class="demo-btns-row" style="margin:16px 0 14px; gap:8px; flex-wrap:wrap">
+          <button id="citizenPortalBtn" class="secondary-btn" style="flex:1; justify-content:center; border-color:var(--camo-gold)">Citizen Portal</button>
+          <button id="soldierPortalBtn" class="secondary-btn" style="flex:1; justify-content:center">🪖 Soldier Portal</button>
+          <button id="adminPortalBtn" class="secondary-btn" style="flex:1; justify-content:center">Admin Control Room</button>
         </div>
 
         <div id="loginPanel">
@@ -113,6 +117,10 @@
             New citizen? <button id="showSignup" class="small-btn" style="margin-left:5px">Create account</button>
           </div>
           
+          <div id="soldierNote" class="hidden" style="margin-top:12px; padding:10px; background:#18281a; border-left:3px solid var(--safe-green); font-size:11px; color:#c7f0d2">
+            Frontline Defense Account: <strong>soldier@rakshanet.mil</strong> (14 Rashtriya Rifles)
+          </div>
+
           <div id="adminNote" class="hidden" style="margin-top:12px; padding:10px; background:#1b2419; border-left:3px solid var(--camo-gold); font-size:11px; color:var(--camo-tan)">
             Control Room Officer account: <strong>admin@rakshanet.local</strong>
           </div>
@@ -149,8 +157,10 @@
     <aside class="sidebar">
       <div class="side-label">TACTICAL MODULES</div>
       <button class="nav-item active" data-page="overview"><span class="nav-symbol">◫</span>Overview</button>
+      <button class="nav-item" data-page="hardware"><span class="nav-symbol">🛰️</span>IoT Hardware Beacons</button>
       <button class="nav-item" data-page="sos"><span class="nav-symbol">⚠️</span>One-Tap Quick SOS</button>
       <button class="nav-item" data-page="report"><span class="nav-symbol">＋</span>Detailed Report</button>
+      <button class="nav-item" data-page="locationSignal"><span class="nav-symbol">⌖</span>Location & Silent Signal</button>
       <button class="nav-item" data-page="family"><span class="nav-symbol">⚑</span>Family Safe-Status</button>
       <button class="nav-item" data-page="tourist"><span class="nav-symbol">▲</span>Tourist Geofence</button>
       <button class="nav-item" data-page="satellite"><span class="nav-symbol">◉</span>Satellite Layers</button>
@@ -170,8 +180,8 @@
 
       <div class="side-emergency">
         <b>EMERGENCY ESCALATION</b>
-        <small>National Response (ERSS)</small>
-        <a href="tel:112">DIAL 112 <span>↗</span></a>
+        <small>Police & Ambulance Response</small>
+        <a href="tel:100">DIAL 100 / 108 <span>☎</span></a>
       </div>
 
       <div class="side-profile">
@@ -197,8 +207,10 @@
 
       <!-- Individual Pages -->
       <div id="page-overview" class="page"></div>
+      <div id="page-hardware" class="page hidden"></div>
       <div id="page-sos" class="page hidden"></div>
       <div id="page-report" class="page hidden"></div>
+      <div id="page-locationSignal" class="page hidden"></div>
       <div id="page-family" class="page hidden"></div>
       <div id="page-tourist" class="page hidden"></div>
       <div id="page-satellite" class="page hidden"></div>
@@ -217,7 +229,39 @@
     </div>
   </div>
 
+  <!-- Dedicated Position Threat Alarm Modal -->
+  <div id="threatModal" class="modal hidden" role="dialog" aria-modal="true" style="z-index:999999; background:rgba(0,0,0,0.85); backdrop-filter:blur(6px)">
+    <div class="modal-card camo-border hud-box" style="border:2px solid #ff4444; box-shadow:0 0 50px rgba(255,50,50,0.6); max-width:540px; text-align:center">
+      <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:12px">
+        <span style="font-size:32px">🚨</span>
+        <span class="tactical-badge red" style="font-size:13px; padding:6px 14px; letter-spacing:1px">EMERGENCY POSITION THREAT DETECTED</span>
+        <span style="font-size:32px">🚨</span>
+      </div>
+      <h2 id="threatModalSector" style="color:#ff6b6b; margin:6px 0 12px; font-size:22px; text-transform:uppercase">KUPWARA SECTOR UNDER ALERT</h2>
+      <div style="background:#200f0f; border:1px solid #ff4444; border-radius:8px; padding:14px; margin-bottom:16px; text-align:left">
+        <div style="font-size:11px; color:#ff9999; font-weight:700; text-transform:uppercase; margin-bottom:4px">OFFICIAL DEFENSE & CIVILIAN ALERT BROADCAST:</div>
+        <p id="threatModalMessage" style="color:#fff; font-size:14px; line-height:1.4; margin:0">Emergency warning issued for your current sector.</p>
+      </div>
+      <div style="background:#162417; border:1px solid var(--camo-gold); border-radius:8px; padding:12px; margin-bottom:18px; display:flex; align-items:center; justify-content:center; gap:12px">
+        <div style="font-size:26px">📡🔊</div>
+        <div style="text-align:left">
+          <div style="font-size:12px; font-weight:700; color:var(--camo-gold)">RAKSHA-TAG HARDWARE BEACON ACTIVE</div>
+          <div style="font-size:11px; color:#a3bba2">High-frequency piezo audio siren and vibration pulsing on hardware puck.</div>
+        </div>
+      </div>
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+        <button id="silenceThreatBuzzerBtn" class="primary-btn" style="background:#b3261e; border-color:#ff7163; font-weight:800; font-size:14px; padding:12px 24px; cursor:pointer">
+          🛑 SILENCE BUZZER ALARM
+        </button>
+        <button id="viewHardwareThreatBtn" class="small-btn" style="padding:12px 18px; font-size:13px; cursor:pointer">
+          📡 View Raksha-Tag Beacon
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="/vendor/maplibre-gl.js"></script>
+  <script src="/ondevice-classifier.js"></script>
   <script src="/app.js?v=3.0"></script>
 </body>
 </html>

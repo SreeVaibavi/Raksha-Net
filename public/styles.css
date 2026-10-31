@@ -1203,3 +1203,413 @@ input::placeholder, textarea::placeholder {
   .main-grid { grid-template-columns: 1fr; }
   .auth-layout { grid-template-columns: 1fr; }
 }
+
+
+/* Separate Location & Silent Signal add-on */
+.location-signal-panel { max-width: 920px; margin: 0 auto; }
+.location-signal-panel label { display:block; margin:12px 0 6px; color:var(--text-dim); }
+.location-signal-panel input { width:100%; padding:12px; border:1px solid var(--camo-olive); border-radius:var(--radius-md); background:var(--tactical-black); color:var(--text-main); font:inherit; }
+.location-signal-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+.rs-signal-banner { margin-top:16px; padding:16px; border:2px solid var(--warning-amber); border-radius:var(--radius-md); background:rgba(229,157,44,.12); color:var(--camo-bone); }
+.rs-signal-banner b { color:var(--camo-gold-glow); letter-spacing:.04em; }
+.rs-signal-banner p { margin-bottom:0; }
+
+/* ==========================================================================
+   IOT HARDWARE BEACON & TACTICAL TRANSPONDER SYSTEM (AIRTAG & TAC-BOX)
+   ========================================================================== */
+
+.hardware-top-btn {
+  animation: pulseGold 3s infinite ease-in-out;
+  transition: all 0.2s ease;
+}
+.hardware-top-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.2);
+  box-shadow: 0 0 12px rgba(212,175,55,0.4);
+}
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 4px rgba(212,175,55,0.2); }
+  50% { box-shadow: 0 0 14px rgba(212,175,55,0.6); }
+}
+
+.hardware-tabs-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.hardware-tab-btn {
+  padding: 10px 18px;
+  background: #192418;
+  border: 1px solid var(--camo-olive);
+  border-radius: var(--radius-md);
+  color: var(--camo-tan);
+  font-weight: 750;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.hardware-tab-btn:hover {
+  background: #243522;
+  border-color: var(--camo-gold);
+  color: #fff;
+}
+.hardware-tab-btn.active {
+  background: linear-gradient(135deg, #2b3d27, #1c2b1a);
+  border-color: var(--camo-gold);
+  color: var(--camo-gold);
+  box-shadow: 0 0 14px rgba(212,175,55,0.25);
+}
+
+.hardware-container-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+@media (max-width: 980px) {
+  .hardware-container-grid { grid-template-columns: 1fr; }
+}
+
+/* --- CITIZEN AIRTAG MODEL --- */
+.airtag-visual-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  background: radial-gradient(circle at 50% 40%, #1e2e1c 0%, #121c11 75%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--camo-olive);
+  position: relative;
+  overflow: hidden;
+}
+
+.airtag-unit {
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #5a6657 0%, #293626 50%, #151f14 100%);
+  border: 6px solid #cfd6cc;
+  box-shadow: 
+    0 16px 36px rgba(0,0,0,0.65), 
+    inset 0 3px 6px rgba(255,255,255,0.35),
+    inset 0 -6px 12px rgba(0,0,0,0.6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.airtag-unit:active {
+  transform: scale(0.97);
+}
+
+/* LED Ring Halo around rim */
+.airtag-led-halo {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.airtag-led-halo.green {
+  border: 3px solid #38b249;
+  box-shadow: 0 0 18px #38b249, inset 0 0 12px #38b249;
+  animation: ledPulseGreen 2.4s infinite ease-in-out;
+}
+.airtag-led-halo.amber {
+  border: 4px solid #f59e0b;
+  box-shadow: 0 0 24px #f59e0b, inset 0 0 16px #f59e0b;
+  animation: ledPulseAmber 1s infinite ease-in-out;
+}
+.airtag-led-halo.red-alarm {
+  border: 5px solid #ef4444;
+  box-shadow: 0 0 32px #ef4444, inset 0 0 20px #ef4444;
+  animation: ledStrobeRed 0.25s infinite alternate;
+}
+
+@keyframes ledPulseGreen {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+@keyframes ledPulseAmber {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes ledStrobeRed {
+  0% { opacity: 0.3; transform: scale(0.99); }
+  100% { opacity: 1; transform: scale(1.03); }
+}
+
+/* Shaking animation when buzzer is active */
+.shaking-device {
+  animation: buzzerShake 0.12s infinite ease-in-out !important;
+}
+@keyframes buzzerShake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-3px, 2px) rotate(-1deg); }
+  50% { transform: translate(3px, -2px) rotate(1deg); }
+  75% { transform: translate(-2px, -3px) rotate(-0.5deg); }
+  100% { transform: translate(2px, 3px) rotate(0.5deg); }
+}
+
+.airtag-rim-text {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Center Tactile SOS Dome */
+.airtag-dome-btn {
+  width: 154px;
+  height: 154px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #8c261e 0%, #54140f 65%, #330b08 100%);
+  border: 3px solid #ff7b70;
+  box-shadow: 
+    0 8px 18px rgba(0,0,0,0.5), 
+    inset 0 4px 8px rgba(255,255,255,0.3),
+    inset 0 -4px 10px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  transition: all 0.1s;
+}
+.airtag-unit:active .airtag-dome-btn {
+  transform: scale(0.94);
+  box-shadow: inset 0 6px 14px rgba(0,0,0,0.9);
+}
+
+.airtag-speaker-grille {
+  position: absolute;
+  bottom: 24px;
+  display: flex;
+  gap: 4px;
+  opacity: 0.65;
+}
+.speaker-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* --- SOLDIER TACTICAL BOX MODEL --- */
+.soldier-box-unit {
+  width: 290px;
+  background: linear-gradient(160deg, #2b3928 0%, #1c271b 60%, #151e14 100%);
+  border-radius: 14px;
+  border: 4px solid #4a5c46;
+  box-shadow: 
+    0 20px 45px rgba(0,0,0,0.8),
+    inset 0 2px 4px rgba(255,255,255,0.15),
+    inset 0 -6px 12px rgba(0,0,0,0.6);
+  padding: 18px 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.soldier-box-hex-screws {
+  position: absolute;
+  inset: 6px;
+  pointer-events: none;
+}
+.hex-screw {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7a8877;
+  border: 1px solid #333d31;
+  position: absolute;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+}
+.hex-screw.top-left { top: 0; left: 0; }
+.hex-screw.top-right { top: 0; right: 0; }
+.hex-screw.bot-left { bottom: 0; left: 0; }
+.hex-screw.bot-right { bottom: 0; right: 0; }
+
+.tactical-stubby-antenna {
+  width: 28px;
+  height: 18px;
+  background: #111710;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border: 2px solid #3d4a3b;
+  position: absolute;
+  top: -18px;
+  left: 28px;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.5);
+}
+
+.soldier-oled-screen {
+  background: #081007;
+  border: 2px solid #2e442a;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #4ade80;
+  font-size: 11px;
+  line-height: 1.45;
+  box-shadow: inset 0 0 10px rgba(74,222,128,0.25);
+  text-shadow: 0 0 4px #4ade80;
+  position: relative;
+  overflow: hidden;
+}
+.soldier-oled-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+  pointer-events: none;
+}
+
+.tactical-buttons-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.tactical-push-btn {
+  padding: 10px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  transition: all 0.1s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.2);
+  border: 1px solid rgba(0,0,0,0.4);
+}
+.tactical-push-btn:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.7);
+}
+
+.tactical-push-btn.btn-red { background: linear-gradient(180deg, #991b1b, #7f1d1d); color: #fecaca; }
+.tactical-push-btn.btn-orange { background: linear-gradient(180deg, #c2410c, #9a3412); color: #fed7aa; }
+.tactical-push-btn.btn-yellow { background: linear-gradient(180deg, #b45309, #92400e); color: #fef08a; }
+.tactical-push-btn.btn-purple { background: linear-gradient(180deg, #6b21a8, #581c87); color: #e9d5ff; }
+.tactical-push-btn.btn-blue { background: linear-gradient(180deg, #1d4ed8, #1e40af); color: #bfdbfe; }
+.tactical-push-btn.btn-green { background: linear-gradient(180deg, #15803d, #166534); color: #bbf7d0; }
+
+.tactical-ptt-bar {
+  background: #192017;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  font-size: 10px;
+  color: var(--camo-sand);
+  border: 1px solid #334031;
+}
+
+/* Sound Wave animation */
+.sound-waves-box {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 16px;
+}
+.sound-wave-bar {
+  width: 3px;
+  background: #ef4444;
+  border-radius: 2px;
+  animation: soundWavePulse 0.4s infinite ease-in-out alternate;
+}
+@keyframes soundWavePulse {
+  0% { height: 4px; }
+  100% { height: 16px; }
+}
+
+/* Position-Specific Threat Alert Modal Overlay */
+.position-threat-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+.position-threat-card {
+  max-width: 600px;
+  width: 100%;
+  background: #172216;
+  border: 3px solid #ef4444;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 0 60px rgba(239, 68, 68, 0.6), inset 0 0 24px rgba(239, 68, 68, 0.2);
+  animation: buzzerShake 0.15s infinite ease-in-out;
+}
+.threat-siren-badge {
+  font-size: 38px;
+  animation: pulse 0.5s infinite alternate;
+}
+
+/* Threat Priority Badges & Operational Review Styles */
+.priority-pill {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-transform: uppercase;
+}
+.priority-pill.high {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+.priority-pill.medium {
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid #f59e0b;
+  color: #fde68a;
+}
+.priority-pill.low {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid #10b981;
+  color: #a7f3d0;
+}
+
+.status-pill.status-confirmed {
+  background: rgba(34, 197, 94, 0.25);
+  border: 1px solid #22c55e;
+  color: #86efac;
+}
+.status-pill.status-investigating {
+  background: rgba(59, 130, 246, 0.25);
+  border: 1px solid #3b82f6;
+  color: #93c5fd;
+}
+.status-pill.status-rejected {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #7f1d1d;
+  color: #f87171;
+}
+.status-pill.status-duplicate {
+  background: rgba(217, 119, 6, 0.25);
+  border: 1px solid #d97706;
+  color: #fde68a;
+}
