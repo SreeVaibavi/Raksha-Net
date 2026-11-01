@@ -1,0 +1,2029 @@
+[
+  {
+    "id": "bff47439-7a89-40a7-8182-1e3c7058ccd9",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-31T07:20:11.616Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "306b5edd-8f65-4585-9948-d7715a7a992c",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "6a27a9bd-9da1-4e17-b214-15e4ad0ab1dd",
+    "createdAt": "2026-10-31T07:18:17.602Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "duplicate_flagged",
+      "isDuplicate": true,
+      "trustScore": 75
+    }
+  },
+  {
+    "id": "484f0239-d701-4b59-b221-912f1a7f38f5",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "593f09cb-2cd1-4c22-abe2-bd5c736ec84a",
+    "createdAt": "2026-10-31T07:17:56.385Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "pending_review",
+      "isDuplicate": false,
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "b9c12373-0213-4a1e-a183-617c7d557f1f",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-31T07:17:35.601Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "4729e496-039b-4443-ae68-0c91ffd05b7b",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-31T06:31:42.913Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "b950fae9-67d6-4ae2-aecd-3943dce90901",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "publish_official_alert",
+    "entity": "alert",
+    "entityId": "d7f08da5-e71a-4884-9cae-a8339992f9da",
+    "createdAt": "2026-10-31T06:20:56.551Z",
+    "meta": {
+      "district": "Kupwara"
+    }
+  },
+  {
+    "id": "538feb67-b218-4f60-a1da-bdbe1109dc22",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-31T06:20:33.386Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "7027800a-131c-4df0-838d-2d2188ca5967",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "e9a01849-ca11-4eab-a69b-f4a378c53bde",
+    "createdAt": "2026-10-31T06:18:36.152Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Border-area emergency",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "1ba6d2f4-3363-4eaf-ae8b-4fc828769090",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "309e5753-925d-47a6-bedb-f0b89bd75db8",
+    "createdAt": "2026-10-31T06:18:34.842Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Medical emergency",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "73814c11-ec40-4e9d-8dc1-bffa096ace03",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "8f5e5aed-f647-42f4-9f10-b4447e705622",
+    "createdAt": "2026-10-31T06:18:31.845Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Suspicious unattended object",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "6b4cb6db-622f-4cea-aa6a-907e716e72bb",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "ab8daa8e-da18-4c22-857f-cf3961e15aaa",
+    "createdAt": "2026-10-31T06:18:29.670Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Suspicious activity",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "b6961c52-05ee-41e1-bd14-7ff9c8dc3cef",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "8593fef1-1523-4ff8-97db-a76f2a4501a2",
+    "createdAt": "2026-10-31T06:18:27.144Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Explosion-like sound",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "47d6aa41-aac7-42de-a619-a4e085233b41",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "9498f300-a566-4e4e-82fe-581f948b86bd",
+    "createdAt": "2026-10-31T06:18:15.339Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Gunshot-like sound",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "99d2d4c3-5070-4d98-89ff-28ed32d58cb7",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-31T06:15:15.988Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "f34d9385-7f03-4a6b-b041-9ea959ac338f",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "tourist_checkin",
+    "entity": "tourist",
+    "entityId": "2789e70d-e745-49d9-a97b-e301cdbe4d4c",
+    "createdAt": "2026-10-31T06:14:33.742Z",
+    "meta": {
+      "destination": "Leh-Ladakh Scenic Circuit"
+    }
+  },
+  {
+    "id": "a56204f4-e078-4fcf-acff-a1a1e001bda7",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "update_family_status",
+    "entity": "family",
+    "entityId": "224f6da5-2198-4bf4-b1df-9c3b54851129",
+    "createdAt": "2026-10-31T06:14:13.346Z",
+    "meta": {
+      "status": "In Shelter"
+    }
+  },
+  {
+    "id": "bbee9507-1c5d-4a73-9e10-fefc62bb24b0",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "b1389810-7bff-4dc8-9e5e-40d02a702333",
+    "createdAt": "2026-10-31T06:12:08.358Z",
+    "meta": {
+      "category": "Explosion-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "duplicate_flagged",
+      "isDuplicate": true,
+      "trustScore": 90
+    }
+  },
+  {
+    "id": "249b1c9c-d974-4e39-a7b4-0e19c81efe4d",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "8bf46dac-dac2-4c4e-ba35-a468bfeacf47",
+    "createdAt": "2026-10-31T06:09:21.161Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "ac24b18a-98ff-4713-82af-a4eefafc69ad",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "af83f718-d52a-4c53-ac7e-203df130f052",
+    "createdAt": "2026-10-31T06:09:21.100Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "89acf13c-b64d-490e-88c4-a58726142430",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "d887dae1-3ace-4f42-8e99-3a01a9970333",
+    "createdAt": "2026-10-31T06:09:20.869Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "acf27b53-82b5-43f2-a130-1203548a053c",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "9ff60082-372a-4944-a875-0c8d816454d6",
+    "createdAt": "2026-10-31T06:09:20.669Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "967e4817-fa2b-469d-a452-9df6f8a48753",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "e4c4de7c-3425-42a8-99e6-7932fc06d9fa",
+    "createdAt": "2026-10-31T06:09:20.515Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "255a24f7-c280-44fe-8a75-0297e2818aa1",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "c0fdf250-8985-4093-8a70-90e2a3507805",
+    "createdAt": "2026-10-31T06:09:20.235Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "a78a705b-fcaf-4537-9acb-e4cca88f204b",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "056a0173-b44d-43c9-800e-150b9f0831d9",
+    "createdAt": "2026-10-31T06:09:19.877Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "aab7ea46-49b0-4e8e-8708-e27ced9b7e7a",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "35fac6be-60c0-4716-9684-25090b4fa7d1",
+    "createdAt": "2026-10-31T06:09:19.432Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "b4b31e3f-b9bc-4b18-b457-9477a9186d1d",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "update_device_config",
+    "entity": "device",
+    "entityId": "RN-TAG-CIV-7749",
+    "createdAt": "2026-10-31T06:09:18.328Z",
+    "meta": {
+      "savedDistrict": "Kupwara"
+    }
+  },
+  {
+    "id": "5704c7a0-d3fe-4f99-946f-c314ef4f65b0",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "update_device_config",
+    "entity": "device",
+    "entityId": "RN-TAG-CIV-7749",
+    "createdAt": "2026-10-31T06:09:12.959Z",
+    "meta": {
+      "savedDistrict": "Kupwara"
+    }
+  },
+  {
+    "id": "0c6d5ccb-2e8e-4b80-817f-667a68a95993",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "eba5ea44-1f03-4aab-a3fb-d86c5e089463",
+    "createdAt": "2026-10-31T06:09:02.821Z",
+    "meta": {
+      "category": "Explosion-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "pending_review",
+      "isDuplicate": false,
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "e7df5e0b-9cc0-4b80-b44f-db09e3bc2d7b",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "d0f0990f-fb99-4edf-bd05-be7056639de1",
+    "createdAt": "2026-10-31T06:08:59.913Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "pending_review",
+      "isDuplicate": false,
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "bb3f9f02-8ec8-4c14-91b3-9b9254aea581",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-31T06:07:12.455Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "fe8a5f91-54d8-4cb8-88e8-ad0eda88c3c1",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "publish_official_alert",
+    "entity": "alert",
+    "entityId": "c0d09202-d407-4c8b-8255-8e38188f8ea9",
+    "createdAt": "2026-10-31T05:18:38.991Z",
+    "meta": {
+      "district": "Samba"
+    }
+  },
+  {
+    "id": "24471d8f-4b50-40d6-a45e-2f3f553dade0",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "verify",
+    "entity": "report",
+    "entityId": "72817dcb-a855-45cb-9293-3063faded0c2",
+    "createdAt": "2026-10-31T05:18:33.761Z",
+    "meta": {
+      "previousStatus": "High Priority Defense Alert",
+      "newStatus": "Confirmed Incident",
+      "verificationStatus": "confirmed",
+      "reason": "",
+      "agency": "Frontier Defence Command & Army Forward Detachment"
+    }
+  },
+  {
+    "id": "8ae1e623-d33d-4c4b-aafe-c9d7cc413676",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-31T05:18:23.440Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "58d06770-767b-4270-82e4-ea1317626de0",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "72817dcb-a855-45cb-9293-3063faded0c2",
+    "createdAt": "2026-10-31T05:17:19.532Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "c2eb33c5-7caf-43e0-99dc-6bf1de3ffff9",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "cb18a34f-2b73-4e7d-80e5-a09b7f4ae069",
+    "createdAt": "2026-10-31T05:17:18.549Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "ae85f7a2-45e8-4e8d-be3c-a6d84f8cce61",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "5a49a5db-3c54-47de-b17f-766b42b431bb",
+    "createdAt": "2026-10-31T05:17:17.630Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "b65ba03d-9d3b-4897-ba68-1f36815a5102",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "591d7795-0532-4ac7-928c-332ede6c5c26",
+    "createdAt": "2026-10-31T05:17:16.093Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "a6f3bb38-868a-43fc-a79f-909deaaeeb1d",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-31T05:16:38.882Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "9509c4f9-9215-4b6b-ba8b-6cfffe739f96",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-31T05:15:24.057Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "d60b19f7-0f31-4137-ac41-1c31a49f1470",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-31T03:16:51.406Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "7a4f216e-cf51-421d-8db4-818d636c4de0",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-31T03:16:48.578Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "7d3c4516-7165-4647-81bf-75c00e4eee55",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-31T03:15:33.935Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "898d1616-88b6-42d6-96ea-a4fa68cd282c",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "tourist_checkin",
+    "entity": "tourist",
+    "entityId": "4272561a-80df-47c2-830b-7a4f5157ed0c",
+    "createdAt": "2026-10-31T03:15:13.311Z",
+    "meta": {
+      "destination": "Gulmarg High Plateau Corridor"
+    }
+  },
+  {
+    "id": "2972e5f8-f646-4ac3-8021-da975f692100",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "update_family_status",
+    "entity": "family",
+    "entityId": "3a48d1fb-b12f-4ece-8721-e04c8c313772",
+    "createdAt": "2026-10-31T03:14:59.926Z",
+    "meta": {
+      "status": "Safe"
+    }
+  },
+  {
+    "id": "75ece017-757f-44ab-855e-10c10e3a7ed5",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "dec6d5a3-ad6a-4658-8030-a8facf169dc9",
+    "createdAt": "2026-10-31T03:14:38.647Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kathua",
+      "priority": "HIGH",
+      "verificationStatus": "pending_review",
+      "isDuplicate": false,
+      "trustScore": 64
+    }
+  },
+  {
+    "id": "a49d9a6d-7399-49f1-92a9-efb7e91cd4a4",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "ccaca215-a62c-4895-b64a-d5c98f7e22c5",
+    "createdAt": "2026-10-31T03:13:45.469Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "duplicate_flagged",
+      "isDuplicate": true,
+      "trustScore": 75
+    }
+  },
+  {
+    "id": "2983adb6-398a-4eca-9f86-2da8589be88d",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "60d2f321-23e3-4320-97e5-f608fe1884fc",
+    "createdAt": "2026-10-31T03:13:39.973Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "pending_review",
+      "isDuplicate": false,
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "27d4934f-85d7-4473-bf22-c0ffe451bf11",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-31T03:13:35.828Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "ca22f1d0-888b-445b-98d8-123a40306fb1",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-31T03:13:30.452Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "274b0b18-968f-4429-b03a-7502bad226d8",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-31T03:13:26.240Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "22665f5b-f6c1-4449-989d-90bcfa804762",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-31T03:13:01.110Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "b02fa84a-9b74-484b-8c55-e9cc56994048",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-31T03:12:56.069Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "b215dd3b-1bfb-4a52-903a-896038153fec",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-31T03:12:50.363Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "2e8a33f3-2863-413d-87ad-176ea94b6036",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-30T14:25:31.565Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "793a64a2-2d10-4b08-a348-ef86cece0ed7",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-30T14:21:48.929Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "159673d2-a0fb-48b8-8cb5-7e933684191c",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "0faa8b19-61ca-4793-b144-340b9ac943c8",
+    "createdAt": "2026-10-30T13:57:46.804Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "ef36d6a4-2365-4853-9257-a72e3249f638",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "d6ad12f3-e72d-481c-a763-3703fc4b354a",
+    "createdAt": "2026-10-30T13:56:53.420Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "0887d7fa-3bee-4d50-917f-b934bc0794b8",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "24bcca9c-755d-4df2-91ee-197861a6f67f",
+    "createdAt": "2026-10-30T13:56:53.221Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "c47beb0d-aa79-4d36-a8de-9b800a482496",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "2ad70988-a4cb-49be-9156-173303a71ad5",
+    "createdAt": "2026-10-30T13:56:52.974Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "d7a3fdc6-8708-4a3d-800d-b0dd44090c1d",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "3a9d220f-18e1-451f-81a2-8aa96baff608",
+    "createdAt": "2026-10-30T13:56:52.926Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "6b3ed93d-3736-4f03-96c2-2390102563c9",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "0d085374-9dab-4cf9-836c-0792c0defa65",
+    "createdAt": "2026-10-30T13:56:52.659Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "6d7716d7-0795-40c8-a9aa-b4025ee143ec",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "0e6c0d39-fee7-4f11-a46c-3ab17128ffce",
+    "createdAt": "2026-10-30T13:56:52.604Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "d364b64e-a187-4bbf-b711-dabdcfae1083",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "1d1f45fc-c570-4791-946f-a7bc4bdc91cc",
+    "createdAt": "2026-10-30T13:56:52.370Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "3e50f593-3239-4fbd-90f8-7ae51390358e",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "15e657a0-4c58-4066-97fb-acc15fcfad51",
+    "createdAt": "2026-10-30T13:56:52.197Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "c9d3f0ea-8814-43a9-ac34-544a8a5fba46",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "1acdfaf5-8c2f-4e54-b43c-9227fdf6be0d",
+    "createdAt": "2026-10-30T13:56:52.021Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "30419423-b2f5-4e8b-a1b7-3e4603892300",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "8555dd4a-c76c-476d-bd43-dc38a6409c8a",
+    "createdAt": "2026-10-30T13:56:51.864Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "3bc801cb-6f47-446f-8d34-0d6ae3b05011",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "fa68e4e8-d479-434b-b0f9-fb175c654447",
+    "createdAt": "2026-10-30T13:56:51.707Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "d75c4e00-f0ca-4a32-b3a0-0da4e82a050d",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "19887ae2-cfd0-4aa6-944b-7f58cf3b6968",
+    "createdAt": "2026-10-30T13:56:51.563Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "093743f6-05ea-4aa2-92c2-9ae5f9c47e25",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "9cdbbda1-cb1b-4bed-a400-dffbb76c5ead",
+    "createdAt": "2026-10-30T13:56:50.602Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "fbdd541a-47d9-4b64-8436-af0e46444d3f",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-30T13:55:02.398Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "f0b0a298-bc8b-4402-a22c-564e180ddd6e",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-30T13:54:23.604Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "4cf30ce0-5e11-4f83-b094-de14cfbd6b12",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-30T13:53:37.548Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "ff257500-0974-4fc9-bcc4-ab8c4877e7f7",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-30T13:53:37.414Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "ee1c1271-3699-4724-a19e-ce206da680a5",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-30T13:53:37.288Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "0a4d55d7-6343-47bb-9d47-23f686616eae",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "review",
+    "entity": "report",
+    "entityId": "0a7cf17a-700b-4fda-abdb-bbab5cd06b69",
+    "createdAt": "2026-10-30T13:40:27.423Z",
+    "meta": {
+      "previousStatus": "Confirmed Incident",
+      "newStatus": "Under Active Investigation",
+      "verificationStatus": "under_review",
+      "reason": "",
+      "agency": "Armed Police Battalions & Law Enforcement Taskforce (Dial 100)"
+    }
+  },
+  {
+    "id": "3230ac1a-c310-4401-8958-6374690cdbf3",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-30T13:38:08.588Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "6805ccab-6757-4d78-8675-dc795eeff8e0",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "publish_official_alert",
+    "entity": "alert",
+    "entityId": "14c01a32-6f52-46e7-a533-3b06c93702c9",
+    "createdAt": "2026-10-28T18:40:53.831Z",
+    "meta": {
+      "district": "Kupwara"
+    }
+  },
+  {
+    "id": "0e394b50-8c9a-42b7-a9e4-e99b12c460a5",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "verify",
+    "entity": "report",
+    "entityId": "0a7cf17a-700b-4fda-abdb-bbab5cd06b69",
+    "createdAt": "2026-10-28T18:40:50.428Z",
+    "meta": {
+      "previousStatus": "Confirmed Incident",
+      "newStatus": "Confirmed Incident",
+      "verificationStatus": "confirmed",
+      "reason": "",
+      "agency": "Armed Police Battalions & Law Enforcement Taskforce (Dial 100)"
+    }
+  },
+  {
+    "id": "59579131-d891-4ae4-84b0-aa6727ef7480",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-28T18:40:37.475Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "74148329-e559-4026-9c9b-a19eb66f36e9",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "verify",
+    "entity": "report",
+    "entityId": "0a7cf17a-700b-4fda-abdb-bbab5cd06b69",
+    "createdAt": "2026-10-28T18:40:29.763Z",
+    "meta": {
+      "previousStatus": "Received by control room",
+      "newStatus": "Confirmed Incident",
+      "verificationStatus": "confirmed",
+      "reason": "",
+      "agency": "Armed Police Battalions & Law Enforcement Taskforce (Dial 100)"
+    }
+  },
+  {
+    "id": "2491731d-644a-4057-a6b0-dd4ffe1c91d0",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-28T18:38:52.114Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "ae45c52a-6b0b-459c-90c4-144df8ead630",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "0a7cf17a-700b-4fda-abdb-bbab5cd06b69",
+    "createdAt": "2026-10-28T18:38:43.011Z",
+    "meta": {
+      "category": "Violence or attack",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "pending_review",
+      "isDuplicate": false,
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "8e945fb4-444c-4fd0-8e8a-3d0bc2085b97",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-28T18:37:06.479Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "a7686bb1-6153-4180-9965-0c144a684332",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-28T18:35:52.447Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "02921783-a6bd-4250-834e-a6b31813c1d9",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "4818491b-42d8-4949-b157-e3ec165f0f26",
+    "createdAt": "2026-10-28T18:30:51.656Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Gunshot-like sound",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "3395d00a-97d4-4982-a934-164d9baaf356",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "23751c8c-abec-4682-a0c4-9035774a38d8",
+    "createdAt": "2026-10-28T17:46:17.402Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Tawang",
+      "priority": "HIGH",
+      "verificationStatus": "pending_review",
+      "isDuplicate": false,
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "19f45b0d-450c-4e8c-aff1-306a7f06bd0c",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-28T17:45:33.497Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "7bd11dc5-0c68-4b72-acd8-4d71ade003a7",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "5c76a359-603d-40b6-b581-ad46428a12cd",
+    "createdAt": "2026-10-28T17:41:45.540Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "adb3b54d-3764-432e-90fb-3afa9e8466b4",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-28T17:41:00.446Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "f81c528b-5562-47ab-bacb-9de6ac440ef6",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-28T17:37:36.128Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "d2fe549d-f193-4fb5-88d5-e7de17e0329a",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "createdAt": "2026-10-28T17:37:36.008Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "ca9e1bb6-ca43-49b2-8c3a-1454f7005be1",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-28T17:37:35.883Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "875b5a22-ffeb-4445-bbbc-dce5545fb15b",
+    "actor": "citizen-demo-kupwara-01",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "citizen-demo-kupwara-01",
+    "createdAt": "2026-10-28T17:37:35.809Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "c6033d7e-1e73-40eb-84a4-81618616130c",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-28T17:37:15.779Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "189b4882-fb1f-4b42-bd29-6d40559767ca",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "review",
+    "entity": "report",
+    "entityId": "92b17d9d-de34-4ed2-81f8-999183e635b5",
+    "createdAt": "2026-10-28T17:29:30.914Z",
+    "meta": {
+      "previousStatus": "Verified Military Report",
+      "newStatus": "Under Active Investigation",
+      "verificationStatus": "under_review",
+      "reason": "Field unit dispatched to confirm acoustic trajectory"
+    }
+  },
+  {
+    "id": "84036ae7-e07c-485f-91b3-d09c2b6e926c",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-28T17:29:30.873Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "c0fc896c-c1ea-4da6-b38b-beb5ba127cfe",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "9f04046b-c974-4c66-915a-782ac2979ea4",
+    "createdAt": "2026-10-28T17:28:50.621Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "confirmed",
+      "isDuplicate": true,
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "0a730dad-7e7b-4841-8f64-c26e08488f21",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-28T17:28:50.604Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "125b762d-24b9-47e7-aa39-1b2a4211f2b4",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "92b17d9d-de34-4ed2-81f8-999183e635b5",
+    "createdAt": "2026-10-28T17:28:31.711Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "priority": "HIGH",
+      "verificationStatus": "confirmed",
+      "isDuplicate": false,
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "bc2d122d-f0e8-4d65-bfbe-80cb4692b009",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-28T17:28:31.694Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "eb1f1f9b-887f-47d0-9165-f221cef8c46c",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-28T17:27:58.327Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "50de7e10-3299-4a40-9b89-670d2caa2c38",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "cee552c3-1177-48b1-a468-a98840bb5881",
+    "createdAt": "2026-10-25T06:35:04.378Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "7ca80d7b-f531-42ff-98a3-50cf12bae1df",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "08ac71f2-0d94-46d1-9556-9c36f45f128a",
+    "createdAt": "2026-10-25T05:19:22.006Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "d8ddc013-9150-4da6-8633-28f8ffc198b0",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "0d0199a6-8c40-4a1a-98ca-be089eb2359e",
+    "createdAt": "2026-10-25T05:18:47.136Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Suspicious activity",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "4d5f24b1-0602-4167-ab5d-aa7615c1edb4",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "verify",
+    "entity": "report",
+    "entityId": "57d70d21-9363-44c1-abf1-b78ce2a5f015",
+    "createdAt": "2026-10-25T05:18:11.089Z",
+    "meta": {
+      "agency": "Local Police Quick Reaction Team (QRT)"
+    }
+  },
+  {
+    "id": "57a702d5-4116-48bb-a06b-e16bce0886fb",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-25T05:17:51.274Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "9914fc17-a4ab-4f83-8c2b-cfad12a8e588",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-25T05:16:43.543Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "61023452-1a6a-49d9-b51f-e6313b26fe25",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "update_family_status",
+    "entity": "family",
+    "entityId": "71d20d93-9554-44b9-aecb-9f9892987f65",
+    "createdAt": "2026-10-25T05:15:22.127Z",
+    "meta": {
+      "status": "Safe"
+    }
+  },
+  {
+    "id": "efa8ed6b-35e7-4d39-aac9-18e8897e3470",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "57d70d21-9363-44c1-abf1-b78ce2a5f015",
+    "createdAt": "2026-10-25T05:13:34.158Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "trustScore": 75
+    }
+  },
+  {
+    "id": "32311aff-9a4c-4bbf-8461-affea6800a12",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "createdAt": "2026-10-25T05:13:18.647Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "fb1ab456-0de2-4031-9998-d83059a445aa",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-25T05:07:57.293Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "b66e4039-7173-4462-93b1-3de6d122c4b1",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "verify",
+    "entity": "report",
+    "entityId": "de258198-6750-4c85-bf58-7fdabc8321e4",
+    "createdAt": "2026-10-25T05:07:50.990Z",
+    "meta": {
+      "agency": "Local Police Quick Reaction Team (QRT)"
+    }
+  },
+  {
+    "id": "ae869fad-17fa-45db-8d8e-9817af596d60",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-25T05:04:16.795Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "47532393-b57a-4995-92cf-61ad6122e8f5",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "update_family_status",
+    "entity": "family",
+    "entityId": "3305d88e-faf8-4414-afe8-9564fb005ad1",
+    "createdAt": "2026-10-25T05:03:44.547Z",
+    "meta": {
+      "status": "Safe"
+    }
+  },
+  {
+    "id": "e612fae0-b872-45ad-9b93-e0a99cd40eea",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "de258198-6750-4c85-bf58-7fdabc8321e4",
+    "createdAt": "2026-10-25T05:03:31.730Z",
+    "meta": {
+      "category": "Explosion-like sound",
+      "district": "Kupwara",
+      "trustScore": 75
+    }
+  },
+  {
+    "id": "65dd3a96-85fb-43a9-bed6-a8c0489b5801",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "5539f649-73d2-4938-9186-a90ba713538a",
+    "createdAt": "2026-10-25T05:01:44.068Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Samba",
+      "trustScore": 64
+    }
+  },
+  {
+    "id": "1a064a3a-cb2f-467c-985a-bdd7835f499b",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "8f07608a-3b1f-4763-ab56-7e73e20bf820",
+    "createdAt": "2026-10-25T05:00:07.349Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "10cd6cdc-4a9c-4946-a65d-f0a5bfb08498",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "createdAt": "2026-10-25T04:59:58.040Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "868a42bf-f453-4364-be35-1df749d38c63",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "createdAt": "2026-10-25T04:52:10.834Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "81f6c366-9a06-46bc-a9dd-5f01b7b11b2e",
+    "actor": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "action": "register",
+    "entity": "profile",
+    "entityId": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "createdAt": "2026-10-25T04:51:23.464Z",
+    "meta": {}
+  },
+  {
+    "id": "ac99cf85-11ba-4a38-9d0e-b7d6ea64e9be",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "7363efe9-c325-4b02-95f7-9e772406d89c",
+    "createdAt": "2026-10-25T04:36:00.697Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Explosion-like sound",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "7a6ea09c-8a6a-4750-aa4f-babb3403f707",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-25T04:35:36.513Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "6d1a8128-fb18-4e97-8070-64b0377b996f",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "update_family_status",
+    "entity": "family",
+    "entityId": "eac3fff3-cd71-4fca-ab6d-8e116bcf419d",
+    "createdAt": "2026-10-25T04:35:05.664Z",
+    "meta": {
+      "status": "Safe"
+    }
+  },
+  {
+    "id": "4fe167cd-ba4c-457f-960e-3bb55531be90",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "update_device_config",
+    "entity": "device",
+    "entityId": "RN-TAG-CIV-7749",
+    "createdAt": "2026-10-25T04:32:56.980Z",
+    "meta": {
+      "savedDistrict": "Samba"
+    }
+  },
+  {
+    "id": "a9cc411f-2f18-4c47-9000-53b40311ddef",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "c6981c28-2ec5-4dc6-9b39-46b96dbf36bf",
+    "createdAt": "2026-10-25T04:32:51.237Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "a2a4cb8c-a952-41ea-b1e1-0a8b3ff7f515",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "0af32c71-feef-42f2-88a7-a82a6e8adf43",
+    "createdAt": "2026-10-25T04:32:49.867Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "e7f1b971-02f0-4e40-9125-7621c04448ff",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "verify",
+    "entity": "report",
+    "entityId": "6607ec29-2b4f-4bf3-8a6a-98c946249728",
+    "createdAt": "2026-10-25T04:30:58.823Z",
+    "meta": {
+      "agency": "Local Police Quick Reaction Team (QRT)"
+    }
+  },
+  {
+    "id": "dbfd494a-92d6-47e5-97d2-d052f98cb34d",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-25T04:30:33.847Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "2ccb0d42-1b56-43cf-95c6-39968ae2b296",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "6607ec29-2b4f-4bf3-8a6a-98c946249728",
+    "createdAt": "2026-10-25T04:30:02.926Z",
+    "meta": {
+      "category": "Explosion-like sound",
+      "district": "Pulwama",
+      "trustScore": 64
+    }
+  },
+  {
+    "id": "1cbd0ae9-5d51-43ee-82f1-4188acadd581",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "e9f8ad64-9bbc-4792-a088-e9043e2597ae",
+    "createdAt": "2026-10-25T04:28:03.173Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Pulwama",
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "a02b8957-0657-479b-a5aa-26ac8347d602",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-25T04:26:26.319Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "7a637002-afbc-400a-8375-db5a79e1cbb8",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "7568b38b-2e71-4ae1-a572-b1b4020d738f",
+    "createdAt": "2026-10-25T04:25:45.103Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "f35743d7-9d5f-4e7b-b2a2-87023d4579a1",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-25T04:25:03.565Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "012c20c6-4702-4062-81c7-2aec93625d3c",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-25T04:24:13.752Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "da1744da-a420-4082-9c1d-d55ea56dead0",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "4b334e6c-23ef-44fd-8b70-8c8105bdcad0",
+    "createdAt": "2026-10-25T04:22:59.424Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "8f0a19b6-f6d6-444f-b6ad-135d37719587",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "214c8e6a-6bbe-489e-b859-26c466415ac8",
+    "createdAt": "2026-10-25T04:22:51.427Z",
+    "meta": {
+      "category": "Gunshot-like sound",
+      "district": "Kupwara",
+      "trustScore": 75
+    }
+  },
+  {
+    "id": "5095f751-eb14-4b62-89ac-428e13622482",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-25T04:22:33.800Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "16f35c00-5b92-4cae-8ba2-70e82d671185",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-25T04:21:42.257Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "24af94c6-f1a8-4cc6-9cde-f7f8be698278",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-25T04:21:19.914Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "bc717cd3-c7a1-4700-99d7-93a705a0a9f6",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "a6106763-856c-44b3-b23d-ba92ab4f3a9e",
+    "createdAt": "2026-10-25T04:02:45.610Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Border-area emergency",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "fb3d97ba-1250-4405-9bb4-9421b5299d0c",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "0d83d907-6da8-4247-a6fe-86b0c5452c20",
+    "createdAt": "2026-10-25T04:01:51.436Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Gunshot-like sound",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "4980c19c-da89-43c9-b983-f574947bcbb3",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "7a3ae149-9816-4245-8f13-322543007c48",
+    "createdAt": "2026-10-25T04:01:42.429Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Explosion-like sound",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "2b34ad68-f92f-4463-90a5-70de2a8440b5",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-25T04:00:12.151Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "3977d9c9-32ae-478b-9bf8-003273c6ef7c",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "8105596d-3080-46bc-ae13-2ac37e701efd",
+    "createdAt": "2026-10-25T03:58:32.265Z",
+    "meta": {
+      "deviceId": "RN-TAG-CIV-7749",
+      "deviceType": "citizen_airtag",
+      "category": "Border-area emergency",
+      "trustScore": 96
+    }
+  },
+  {
+    "id": "51fdec40-9f69-40cd-ba98-f22458f58e1b",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "hardware_beacon_trigger",
+    "entity": "report",
+    "entityId": "307a03de-574e-4004-ae02-1856c8474a7a",
+    "createdAt": "2026-10-25T03:58:24.526Z",
+    "meta": {
+      "deviceId": "RN-TAC-MIL-014",
+      "deviceType": "soldier_tactical_box",
+      "category": "Gunshot-like sound",
+      "trustScore": 100
+    }
+  },
+  {
+    "id": "d5519fa5-c016-4c62-8e37-214b469bd9b3",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-25T03:58:05.562Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "e0340b16-6a50-4f20-9b54-f0903c3bc9f1",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-25T03:57:56.994Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "ff4e48a5-a0eb-4d71-ae67-653d64aedeff",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-25T03:57:41.419Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "537f5372-2164-485a-b213-fe310e4687fa",
+    "actor": "soldier-14-rr-kupwara",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "soldier-14-rr-kupwara",
+    "createdAt": "2026-10-25T03:57:32.864Z",
+    "meta": {
+      "role": "soldier"
+    }
+  },
+  {
+    "id": "b5c74118-45cd-4ff8-b3ad-831dda91962d",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "tourist_checkin",
+    "entity": "tourist",
+    "entityId": "2d04b3e8-2636-41d9-a7c1-fd38655dd5a9",
+    "createdAt": "2026-10-25T03:45:19.900Z",
+    "meta": {
+      "destination": "Gulmarg High Plateau Corridor"
+    }
+  },
+  {
+    "id": "26ddf203-7206-46e0-bcc1-a7152ee3f957",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "tourist_checkin",
+    "entity": "tourist",
+    "entityId": "792e7524-da2d-487a-8d31-caf29c6a37bc",
+    "createdAt": "2026-10-25T03:45:03.483Z",
+    "meta": {
+      "destination": "Gulmarg High Plateau Corridor"
+    }
+  },
+  {
+    "id": "d322202e-427c-412e-a39d-395aadd63f6a",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "update_family_status",
+    "entity": "family",
+    "entityId": "5cfa5cb4-500e-4b22-817e-00413d83ad4a",
+    "createdAt": "2026-10-25T03:44:29.484Z",
+    "meta": {
+      "status": "Safe"
+    }
+  },
+  {
+    "id": "0237911b-cfa5-48c8-bd3a-86bc9e04b3d1",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "97fc885f-daec-47b8-af66-8f645c904927",
+    "createdAt": "2026-10-25T03:44:06.593Z",
+    "meta": {
+      "category": "Explosion-like sound",
+      "district": "Pulwama",
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "28e464a1-0c40-403c-82af-e71f191841a1",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-25T03:41:28.285Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "02a130bd-6b07-4fff-8d3e-d8eb5b617b6b",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "submit_report",
+    "entity": "report",
+    "entityId": "023afcbd-3424-4d19-91bb-4b9dd4cbb07c",
+    "createdAt": "2026-10-25T03:36:36.622Z",
+    "meta": {
+      "category": "Explosion-like sound",
+      "district": "Kupwara",
+      "trustScore": 57
+    }
+  },
+  {
+    "id": "2c635a54-4c60-4bf4-a25d-2e7be40c36c3",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-25T03:36:19.892Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "b055e824-463e-4256-989b-743675955004",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "update_family_status",
+    "entity": "family",
+    "entityId": "2f6205e8-7271-4bc7-b8af-06c1606617b6",
+    "createdAt": "2026-10-25T03:35:15.264Z",
+    "meta": {
+      "status": "Safe"
+    }
+  },
+  {
+    "id": "7d0a0646-3476-4f6c-82e2-cd314257fbbc",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-25T03:34:54.282Z",
+    "meta": {
+      "role": "citizen"
+    }
+  },
+  {
+    "id": "ba8ecae5-d0ed-4a77-80da-efaf629073a5",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "quick_demo_login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-23T11:39:31.703Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "417d80a3-0bc8-4cb3-a5bf-aa6e8ef1f7ac",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "simulate_12_report_cluster",
+    "entity": "cluster",
+    "entityId": "Kupwara-Gunshot-12",
+    "createdAt": "2026-10-23T11:32:48.960Z",
+    "meta": {
+      "count": 12
+    }
+  },
+  {
+    "id": "73d37271-b60c-45bb-a186-369f0b7ae968",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "simulate_12_report_cluster",
+    "entity": "cluster",
+    "entityId": "Kupwara-Gunshot-12",
+    "createdAt": "2026-10-23T09:15:35.103Z",
+    "meta": {
+      "count": 12
+    }
+  },
+  {
+    "id": "cd4bc791-329d-415f-a480-a3fa83f2507c",
+    "actor": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "action": "login",
+    "entity": "profile",
+    "entityId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdAt": "2026-10-23T09:15:30.348Z",
+    "meta": {
+      "role": "super_admin"
+    }
+  },
+  {
+    "id": "6ad241da-86fa-4994-afc2-274d4db85eeb",
+    "actor": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "action": "register",
+    "entity": "profile",
+    "entityId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "createdAt": "2026-10-23T09:13:24.711Z",
+    "meta": {}
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "d7f08da5-e71a-4884-9cae-a8339992f9da",
+    "reportId": "e9a01849-ca11-4eab-a69b-f4a378c53bde",
+    "state": "Jammu And Kashmir",
+    "district": "Kupwara",
+    "category": "Border-area emergency",
+    "message": "Official safety alert for Kupwara: Avoid the affected perimeter. Move indoors or toward designated safe point. Call 100 or 108 for emergency help.",
+    "hindiMessage": "आधिकारिक सुरक्षा चेतावनी (Kupwara): कृपया प्रभावित क्षेत्र से दूर रहें। घर के अंदर रहें और शांत रहें। आपात स्थिति में 100 या 108 डायल करें।",
+    "tamilMessage": "அதிகாரப்பூர்வ பாதுகாப்பு எச்சரிக்கை (Kupwara): பாதிக்கப்பட்ட பகுதியிலிருந்து விலகி பாதுகாப்பான இடத்தில் இருக்கவும். அவசர உதவிக்கு 100 அல்லது 108 அழைக்கவும்.",
+    "createdAt": "2026-10-31T06:20:56.548Z",
+    "createdBy": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdByName": "RakshaNet Super Admin",
+    "official": true
+  },
+  {
+    "id": "c0d09202-d407-4c8b-8255-8e38188f8ea9",
+    "reportId": "72817dcb-a855-45cb-9293-3063faded0c2",
+    "state": "Jammu And Kashmir",
+    "district": "Samba",
+    "category": "Border-area emergency",
+    "message": "Official safety alert for Samba: Avoid the affected perimeter. Move indoors or toward designated safe point. Call 100 or 108 for emergency help.",
+    "hindiMessage": "आधिकारिक सुरक्षा चेतावनी (Samba): कृपया प्रभावित क्षेत्र से दूर रहें। घर के अंदर रहें और शांत रहें। आपात स्थिति में 100 या 108 डायल करें।",
+    "tamilMessage": "அதிகாரப்பூர்வ பாதுகாப்பு எச்சரிக்கை (Samba): பாதிக்கப்பட்ட பகுதியிலிருந்து விலகி பாதுகாப்பான இடத்தில் இருக்கவும். அவசர உதவிக்கு 100 அல்லது 108 அழைக்கவும்.",
+    "createdAt": "2026-10-31T05:18:38.986Z",
+    "createdBy": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "createdByName": "RakshaNet Super Admin",
+    "official": true
+  },
+  {
+    "id": "14c01a32-6f52-46e7-a533-3b06c93702c9",
+    "reportId": "0a7cf17a-700b-4fda-abdb-bbab5cd06b69",
+    "state": "Jammu And Kashmir",
+    "district": "Kupwara",
+    "category": "Violence or attack",
+    "message": "Official safety alert for Kupwara: Avoid the affected perimeter. Move indoors or toward designated safe point. Call 100 or 108 for emergency help.",
+    "hindiMessage": "आधिकारिक सुरक्षा चेतावनी (Kupwara): कृपया प्रभावित क्षेत्र से दूर रहें। घर के अंदर रहें और शांत रहें। आपात स्थिति में 100 या 108 डायल करें।",
+    "tamilMessage": "அதிகாரப்பூர்வ பாதுகாப்பு எச்சரிக்கை (Kupwara): பாதிக்கப்பட்ட பகுதியிலிருந்து விலகி பாதுகாப்பான இடத்தில் இருக்கவும். அவசர உதவிக்கு 100 அல்லது 108 அழைக்கவும்.",
+    "createdAt": "2026-10-28T18:40:53.828Z",
+    "createdBy": "soldier-14-rr-kupwara",
+    "createdByName": "Havildar Balwan Singh",
+    "official": true
+  }
+]

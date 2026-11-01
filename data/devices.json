@@ -1,0 +1,40 @@
+[
+  {
+    "id": "RN-TAG-CIV-7749",
+    "name": "Raksha-Tag Civilian Distress Puck",
+    "type": "citizen_airtag",
+    "formFactor": "Compact Round 32mm Puck",
+    "ownerId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "ownerName": "Sree Vaibavi V",
+    "savedDistrict": "Kupwara",
+    "savedState": "Jammu and Kashmir",
+    "battery": 60,
+    "firmware": "v2.4.1-LORA",
+    "signalMode": "Zero Cellular / LoRa Mesh & Sat Fallback",
+    "active": true,
+    "buzzerActive": false,
+    "lastTrigger": "2026-10-31T06:09:21.151Z",
+    "lastHeartbeat": "2026-10-31T06:09:18.323Z"
+  },
+  {
+    "id": "RN-TAC-MIL-014",
+    "name": "Raksha-Tactical Communicator Box",
+    "type": "soldier_tactical_box",
+    "formFactor": "Ruggedized Walkie Box (Stubby Integrated Antenna)",
+    "ownerId": "soldier-14-rr-kupwara",
+    "ownerName": "Havildar Balwan Singh",
+    "callsign": "Bravo-6 (14 RR Detachment)",
+    "unit": "14 Rashtriya Rifles / Northern Command",
+    "frequency": "433.920 MHz (Ch-04)",
+    "savedDistrict": "Kupwara",
+    "savedState": "Jammu and Kashmir",
+    "battery": 75,
+    "firmware": "v3.1.0-MILSPEC",
+    "signalMode": "Encrypted Mil-Sat / VHF Packet Burst",
+    "trustLevel": "100% Defense Verified Source",
+    "active": true,
+    "buzzerActive": false,
+    "lastTrigger": "2026-10-31T06:18:36.142Z",
+    "lastHeartbeat": "2026-10-24T15:42:00.000Z"
+  }
+]

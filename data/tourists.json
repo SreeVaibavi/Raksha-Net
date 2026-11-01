@@ -1,0 +1,38 @@
+[
+  {
+    "id": "2789e70d-e745-49d9-a97b-e301cdbe4d4c",
+    "userId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "userName": "Sree Vaibavi V",
+    "destination": "Leh-Ladakh Scenic Circuit",
+    "durationDays": 3,
+    "emergencyContact": "9876543021",
+    "checkedInAt": "2026-10-31T06:14:33.739Z"
+  },
+  {
+    "id": "4272561a-80df-47c2-830b-7a4f5157ed0c",
+    "userId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "userName": "Sree Vaibavi V",
+    "destination": "Gulmarg High Plateau Corridor",
+    "durationDays": 3,
+    "emergencyContact": "9876543201",
+    "checkedInAt": "2026-10-31T03:15:13.310Z"
+  },
+  {
+    "id": "2d04b3e8-2636-41d9-a7c1-fd38655dd5a9",
+    "userId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "userName": "Sree Vaibavi V",
+    "destination": "Gulmarg High Plateau Corridor",
+    "durationDays": 3,
+    "emergencyContact": "9876543210",
+    "checkedInAt": "2026-10-25T03:45:19.897Z"
+  },
+  {
+    "id": "792e7524-da2d-487a-8d31-caf29c6a37bc",
+    "userId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "userName": "Sree Vaibavi V",
+    "destination": "Gulmarg High Plateau Corridor",
+    "durationDays": 3,
+    "emergencyContact": "9876543210",
+    "checkedInAt": "2026-10-25T03:45:03.478Z"
+  }
+]

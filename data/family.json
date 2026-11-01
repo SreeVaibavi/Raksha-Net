@@ -1,0 +1,29 @@
+[
+  {
+    "id": "71d20d93-9554-44b9-aecb-9f9892987f65",
+    "userId": "1de50d57-0cbf-4522-8cb2-0de761de6d76",
+    "userName": "SREE",
+    "status": "Safe",
+    "note": "5 ARE SAFE",
+    "district": "Border Sector",
+    "updatedAt": "2026-10-25T05:15:22.123Z"
+  },
+  {
+    "id": "eac3fff3-cd71-4fca-ab6d-8e116bcf419d",
+    "userId": "13874916-b556-4a0d-94e3-e043d77a6e65",
+    "userName": "RakshaNet Super Admin",
+    "status": "Safe",
+    "note": "ALL 6 SAFE FOR NOW",
+    "district": "Border Sector",
+    "updatedAt": "2026-10-25T04:35:05.661Z"
+  },
+  {
+    "id": "224f6da5-2198-4bf4-b1df-9c3b54851129",
+    "userId": "cf3d9999-eb46-4afd-a486-0c731899b922",
+    "userName": "Sree Vaibavi V",
+    "status": "In Shelter",
+    "note": "INSIDE ROCKSLIDE SPACE,O VER 20 PEOPLE HERE!....FEELS RISKY,PLZ SAFE US",
+    "district": "Border Sector",
+    "updatedAt": "2026-10-31T06:14:13.341Z"
+  }
+]

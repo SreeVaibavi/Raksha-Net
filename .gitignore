@@ -1,5 +1,4 @@
 .env
-data/*.json
 data/*.tmp
 node_modules/
 *.zip
